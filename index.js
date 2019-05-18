@@ -13,7 +13,7 @@ const port = process.env.PORT || 8080;
 const server = http
     .createServer((req, res) => {
         const path = req.url.match(/\/[^\/?]*/)[0];
-        res.end(url ? 'mongo' : 'no url');
+        res.end(url);
         try {
             switch (path) {
                 case '/': {
