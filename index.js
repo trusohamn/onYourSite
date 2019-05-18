@@ -1,5 +1,4 @@
 const MongoClient = require('mongodb').MongoClient;
-//const url = "mongodb://localhost:27017/mydb";
 const url = process.env.MONGOLAB_URI;
 console.log('MongoDB url:', url);
 const fs = require('fs');
