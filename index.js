@@ -1,5 +1,7 @@
 const MongoClient = require('mongodb').MongoClient;
-const url = "mongodb://localhost:27017/mydb";
+//const url = "mongodb://localhost:27017/mydb";
+const url = process.env.MONGOLAB_URI;
+console.log('MongoDB url:', url);
 const fs = require('fs');
 const http = require('http');
 const qs = require('querystring');
@@ -14,7 +16,6 @@ const server = http
         try {
             switch (path) {
                 case '/': {
-                    console.log('here');
                     res.writeHead(200, { 'Content-Type': 'text/html' });
                     res.end(home);
                     break;
