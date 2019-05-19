@@ -2,7 +2,6 @@ const fs = require('fs');
 const http = require('http');
 const qs = require('querystring');
 
-const home = fs.readFileSync('./static/index.html');
 const profileData = require('./profileData');
 const newProfile = require('./newProfile');
 
@@ -23,11 +22,10 @@ const server = http
                         res.end(data);
                     }
                 });
+
             } else if (/.*\.css$/.test(path)) {
                 let filename = path.match(/\/[^\/]+\.css/);
-                console.log('fetching:' + filename);
                 fs.readFile('./static/styles' + filename, (err, data) => {
-                    console.log('fetching:' + './static/styles' + filename);
                     if (err) {
                         console.log(err);
                     } else {
@@ -40,8 +38,14 @@ const server = http
                 path = req.url.match(/\/[^\/?]*/)[0];
                 switch (path) {
                     case '/': {
-                        res.writeHead(200, { 'Content-Type': 'text/html' });
-                        res.end(home);
+                        fs.readFile('./static/index.html', (err, data) => {
+                            if (err) {
+                                console.log(err);
+                            } else {
+                                res.writeHead(200, { 'Content-Type': 'text/html' });
+                                res.end(data);
+                            }
+                        });
                         break;
                     }
                     case '/generate': {
@@ -57,6 +61,15 @@ const server = http
                         });
                         break;
                     }
+                    case '/preview': {
+                        console.log('preview personal page');
+                        const query = qs.decode(req.url.split('?')[1]);
+                        console.log(query);
+                        res.writeHead(200, { 'Content-Type': 'text/html' });
+                        let page = generatePersonalPage(query);
+                        res.end(page);
+                        break;
+                    }
                     case '/profile': {
                         const key = req.url.match(/[^?\/]+$/)[0];
                         profileData.getData(key, (content) => {
@@ -69,7 +82,8 @@ const server = http
                 }
             }
         }
-        catch {
+        catch (err) {
+            console.log(err);
         }
     })
     .listen(port);
@@ -88,7 +102,6 @@ function generatePersonalPage(data) {
         <head>
             <meta name="viewport" content="width=device-width,initial-scale=1">
             <title>On Your Site</title>
-            <link rel="shortcut icon" href="#">
             <link rel="stylesheet" href=${data.styles}>
         </head>
          
