@@ -1,25 +1,24 @@
 <!DOCTYPE html>
+<html>
 
 <head>
-
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>On Your Site</title>
-    <link rel="shortcut icon" href="#" />
+    <link rel="shortcut icon" href="#">
 </head>
 
 <body>
-
-    <div id='formDiv'>
-        <form action='/generate' method="GET">
-            <input name='_id' type='text'> </input>
-            <input name='name' type='text'> </input>
-            <input name='surname' type='text'> </input>
-            <input type='submit' id='submit'></input>
-        </form>
+    <div id="formDiv">
+        <form action="/generate" method="GET">path<input name="_id" type="text"><br> name<input name="name"
+                type="text"><br> surname<input name="surname" type="text"><br> image url<input name="imageUrl"
+                type="text"><br> style<select name="styles">
+                <option value="red.css">red</option>
+                <option value="blue.css">blue</option>
+                <option value="black.css">black</option>
+            </select><br>
+            <input id="submit" type="submit"></form>
     </div>
-
-    <div id='output'></div>
-
+    <div id="output"></div>
 </body>
 
 </html>

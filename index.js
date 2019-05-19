@@ -1,9 +1,8 @@
 const fs = require('fs');
 const http = require('http');
 const qs = require('querystring');
-const pug = require('pug');
 
-//const home = fs.readFileSync('./static/index.html');
+const home = fs.readFileSync('./static/index.html');
 const profileData = require('./profileData');
 const newProfile = require('./newProfile');
 
@@ -42,10 +41,7 @@ const server = http
                 switch (path) {
                     case '/': {
                         res.writeHead(200, { 'Content-Type': 'text/html' });
-                        let page = pug.renderFile('./views/index.pug', {
-                            welcome: ''
-                        });
-                        res.end(page);
+                        res.end(home);
                         break;
                     }
                     case '/generate': {
