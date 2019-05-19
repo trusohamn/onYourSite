@@ -2,3 +2,16 @@ body {
     background : rgb(197, 42, 68);
     color :white;
 }
+
+.class1 {
+   font-size : 2 rem; 
+}
+
+.class2 {
+    font-size : 0.5 rem; 
+    color: yellowgreen;
+ }
+
+ .class3 {
+    font-size : 1 rem; 
+ }

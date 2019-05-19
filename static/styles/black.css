@@ -2,3 +2,15 @@ body {
     background : rgb(10, 10, 46);
     color :rgb(12, 233, 23);
 }
+.class1 {
+    font-size : 2 rem; 
+ }
+ 
+ .class2 {
+     font-size : 0.5 rem; 
+     color : pink;
+  }
+ 
+  .class3 {
+     font-size : 1 rem; 
+  }

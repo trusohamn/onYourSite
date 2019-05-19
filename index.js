@@ -106,8 +106,8 @@ function generatePersonalPage(data) {
         </head>
          
         <body>
-            <h1>${data.name}</h1>
-            <h2>${data.surname}</h2>
+            <h1 class=${data.class_1}>${data.text_1}</h1>
+            <h2 class=${data.class_2}>${data.text_2}</h2>
             <img src=${data.imageUrl} alt="Your image">
         </body>
         
