@@ -1,6 +1,3 @@
-const MongoClient = require('mongodb').MongoClient;
-const url = process.env.MONGOLAB_URI;
-console.log(url);
 const fs = require('fs');
 const http = require('http');
 const qs = require('querystring');
@@ -8,6 +5,7 @@ const pug = require('pug');
 
 //const home = fs.readFileSync('./static/index.html');
 const profileData = require('./profileData');
+const newProfile = require('./newProfile');
 
 const port = process.env.PORT || 8080;
 
@@ -54,7 +52,7 @@ const server = http
                         console.log('generating entry');
                         const query = qs.decode(req.url.split('?')[1]);
                         console.log(query);
-                        addEntry(query, (answer) => {
+                        newProfile.add(query, (answer) => {
                             //redirect
                             if (answer) {
                                 res.writeHead(302, { Location: answer });
@@ -85,19 +83,6 @@ server.on('error', (e) => {
 
 
 server.on('listening', () => console.log('Server is listening on port', server.address().port));
-
-function addEntry(entry, callback) {
-    MongoClient.connect(url, function (err, db) {
-        if (err) throw err;
-        var dbo = db.db("mydb");
-        dbo.collection("test").insertOne(entry, function (err, res) {
-            if (err) throw err;
-            console.log("1 document inserted");
-            db.close();
-            callback('/profile/' + entry._id);
-        });
-    });
-}
 
 function generatePersonalPage(data) {
     try {
