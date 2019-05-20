@@ -47,18 +47,18 @@ const server = http.createServer((req, res) => {
                                 res.end();
                             }
                         });
-
                     break;
                 }
                 case '/preview': {
                     console.log('preview personal page');
-                    readBody(req, body => {
-                        const processedData = generateData(body);
-                        console.log(processedData);
-                        res.writeHead(200, { 'Content-Type': 'text/html' });
-                        let page = generatePersonalPage(processedData);
-                        res.end(page);
-                    });
+                    readBodyPromise(req)
+                        .then(body => {
+                            const processedData = generateData(body);
+                            console.log(processedData);
+                            res.writeHead(200, { 'Content-Type': 'text/html' });
+                            let page = generatePersonalPage(processedData);
+                            res.end(page);
+                        });
                     break;
                 }
                 case '/profile': {
@@ -135,22 +135,6 @@ function generateData(rawData) {
 
     return data;
 }
-
-function readBody(req, callback) {
-    var body = '';
-    req.on('data', function (data) {
-        body += data;
-        if (body.length > 1e6) {
-            // FLOOD ATTACK OR FAULTY CLIENT, NUKE REQUEST
-            request.connection.destroy();
-        }
-    });
-    req.on('end', function () {
-        var query = qs.parse(body);
-        callback(query);
-    });
-}
-
 
 function readBodyPromise(req) {
     return new Promise((resolve, reject) => {
