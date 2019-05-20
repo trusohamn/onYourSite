@@ -37,10 +37,11 @@ const server = http
                         console.log('generating entry');
                         const query = qs.decode(req.url.split('?')[1]);
                         console.log(query);
-                        newProfile.add(query, (answer) => {
+                        const processedData = generateData(query);
+                        console.log(processedData);
+                        newProfile.add(processedData, (answer) => {
                             //redirect
                             if (answer) {
-                                // process the answer
                                 res.writeHead(302, { Location: answer });
                                 res.end();
                             }
@@ -51,9 +52,11 @@ const server = http
                         console.log('preview personal page');
                         const query = qs.decode(req.url.split('?')[1]);
                         console.log(query);
+                        const processedData = generateData(query);
+                        console.log(processedData);
                         res.writeHead(200, { 'Content-Type': 'text/html' });
-                        let page = generatePersonalPage(query);
-                        res.end(page);
+                        let page = generatePersonalPage(processedData);
+                        res.end(page); 
                         break;
                     }
                     case '/profile': {
@@ -105,7 +108,19 @@ function generatePersonalPage(data) {
 }
 
 function generateData(rawData){
-    let data = {};
+    let data = {
+        divs : []
+    };
+    Object.keys(rawData).forEach((k) => {
+        if(k === '_id' || k === 'imageUrl' || k === 'styles'){
+            data[k] = rawData[k];
+        } else if (/text/.test(k)){
+            data.divs.push({
+                text : rawData[k],
+                classN : rawData['class_' + k.match(/\d+/)[0]]
+            });
+        }
+    });
 
     return data;
 }

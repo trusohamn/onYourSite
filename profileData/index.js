@@ -4,7 +4,7 @@ const MongoClient = require('mongodb').MongoClient;
 const url = process.env.MONGOLAB_URI;
 
 function findEntry(key, callback) {
-    console.log('looging for:', key);
+    console.log('looking for:', key);
     MongoClient.connect(url, function (err, db) {
         if (err) throw err;
         var dbo = db.db("mydb");
