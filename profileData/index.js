@@ -22,13 +22,20 @@ function findEntryMock(key, callback) {
     const result =
     {
         _id: 'styling',
-        text_1: 'first',
-        class_1: 'class1',
-        text_2: 'second',
-        class_2: 'class2',
+        divs :[
+            {
+                classN: 'class1',
+                text: 'first'
+            },
+            {
+                classN: 'class2',
+                text: 'second'
+            }
+        ],
         imageUrl:
-         'https://animals.sandiegozoo.org/sites/default/files/2016-09/animals_hero_tasmaniandevil.jpg',
-        styles: 'black.css' }
+            'https://animals.sandiegozoo.org/sites/default/files/2016-09/animals_hero_tasmaniandevil.jpg',
+        styles: 'black.css'
+    }
     callback(result);
 }
 

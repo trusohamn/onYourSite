@@ -40,6 +40,7 @@ const server = http
                         newProfile.add(query, (answer) => {
                             //redirect
                             if (answer) {
+                                // process the answer
                                 res.writeHead(302, { Location: answer });
                                 res.end();
                             }
@@ -65,7 +66,6 @@ const server = http
                         });
                         break;
                     }
-
                 }
             }
         }
@@ -82,25 +82,30 @@ server.on('error', (e) => {
 server.on('listening', () => console.log('Server is listening on port', server.address().port));
 
 function generatePersonalPage(data) {
+    let output;
     try {
-        return `
+        output = `
         <!DOCTYPE html>
         <html>
         <head>
             <meta name="viewport" content="width=device-width,initial-scale=1">
             <title>On Your Site</title>
             <link rel="stylesheet" href=${data.styles}>
-        </head>
-         
+        </head>    
         <body>
-            <div class=${data.class_1}>${data.text_1}</div>
-            <div class=${data.class_2}>${data.text_2}</div>
-            <img src=${data.imageUrl} alt="Your image">
-        </body>
-        
-        </html>
-    `
+        <img src=${data.imageUrl} alt="Your image">`;
+        data.divs.forEach((e) => {
+            output += `<div class=${e.classN}>${e.text}</div>`;
+        });
+        output += `</body></html> `;
     } catch (err) {
         console.log(err);
-    };
+    }
+    return output;
+}
+
+function generateData(rawData){
+    let data = {};
+
+    return data;
 }
