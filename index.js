@@ -9,87 +9,80 @@ const static = require('./static');
 
 const port = process.env.PORT || 8080;
 
-const server = http
-    .createServer((req, res) => {
-        console.log(req.url);
-        try {
-            let path = req.url.split('?')[0];
-            if (/.*\.\w+$/.test(path)) {
-                static.route(req, res);
-            } else {
+const server = http.createServer((req, res) => {
+    console.log(req.url);
+    try {
+        let path = req.url.split('?')[0];
+        if (/.*\.\w+$/.test(path)) {
+            static.route(req, res);
+        } else {
+            path = req.url.match(/^\/[^\/?]*/)[0];
+            console.log('path', path);
+            switch (path) {
+                case '/': {
+                    console.log('home');
+                    fs.readFile('./static/index.html', (err, data) => {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            res.writeHead(200, { 'Content-Type': 'text/html' });
+                            res.end(data);
+                        }
+                    });
+                    break;
+                }
+                case '/generate': {
+                    console.log('generating entry');
 
-                path = req.url.match(/^\/[^\/?]*/)[0];
-                console.log('path', path);
-                switch (path) {
-                    case '/': {
-                        console.log('home');
-                        fs.readFile('./static/index.html', (err, data) => {
-                            if (err) {
-                                console.log(err);
-                            } else {
-                                res.writeHead(200, { 'Content-Type': 'text/html' });
-                                res.end(data);
+                    readBodyPromise(req)
+                        .then(body => {
+                            const processedData = generateData(body);
+                            console.log(processedData);
+                            return newProfile.add(processedData);
+                        })
+                        .then(answer => {
+                            //redirect
+                            if (answer) {
+                                res.writeHead(302, { Location: answer });
+                                res.end();
                             }
                         });
-                        break;
-                    }
-                    case '/generate': {
-                        console.log('generating entry');
-                        readBody(req, body => {
-                            const processedData = generateData(body);
-                            console.log(processedData);
-                            newProfile.add(processedData, (answer) => {
-                                //redirect
-                                if (answer) {
-                                    res.writeHead(302, { Location: answer });
-                                    res.end();
-                                }
-                            });
-                        });
 
-                        break;
-                    }
-                    case '/preview': {
-                        console.log('preview personal page');
-                        readBody(req, body => {
-                            const processedData = generateData(body);
-                            console.log(processedData);
-                            res.writeHead(200, { 'Content-Type': 'text/html' });
-                            let page = generatePersonalPage(processedData);
-                            res.end(page);
-                        });
-                        break;
-                    }
-                    case '/profile': {
-                        console.log('profile');
-                        const key = req.url.match(/[^?\/]+$/)[0];
-                        profileData.getData(key)
-                            .then(content => {
-                                res.writeHead(200, { 'Content-Type': 'text/html' });
-                                let page = generatePersonalPage(content);
-                                res.end(page);
-                            })
-                            .catch(error => {
-                                console.log('error in promise handling');
-                                console.log(error);
-                            });
-
-                        /* //CALLBACK
-                        profileData.getData(key, (content) => {
+                    break;
+                }
+                case '/preview': {
+                    console.log('preview personal page');
+                    readBody(req, body => {
+                        const processedData = generateData(body);
+                        console.log(processedData);
+                        res.writeHead(200, { 'Content-Type': 'text/html' });
+                        let page = generatePersonalPage(processedData);
+                        res.end(page);
+                    });
+                    break;
+                }
+                case '/profile': {
+                    console.log('profile');
+                    const key = req.url.match(/[^?\/]+$/)[0];
+                    profileData.getData(key)
+                        .then(content => {
                             res.writeHead(200, { 'Content-Type': 'text/html' });
                             let page = generatePersonalPage(content);
                             res.end(page);
+                        })
+                        .catch(error => {
+                            console.log('error in promise handling');
+                            console.log(error);
                         });
-                        */
-                        break;
-                    }
+                    break;
                 }
             }
         }
-        catch (err) {
-            console.log(err);
-        }
-    })
+    }
+    catch (err) {
+        console.log(err);
+    }
+})
     .listen(port);
 server.on('error', (e) => {
     console.log(e);
@@ -155,5 +148,24 @@ function readBody(req, callback) {
     req.on('end', function () {
         var query = qs.parse(body);
         callback(query);
+    });
+}
+
+
+function readBodyPromise(req) {
+    return new Promise((resolve, reject) => {
+        var body = '';
+        req.on('data', function (data) {
+            body += data;
+            if (body.length > 1e6) {
+                // FLOOD ATTACK OR FAULTY CLIENT, NUKE REQUEST
+                request.connection.destroy();
+                reject('overflooded');
+            }
+        });
+        req.on('end', function () {
+            var query = qs.parse(body);
+            resolve(query);
+        });
     });
 }
