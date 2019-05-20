@@ -5,81 +5,64 @@ const qs = require('querystring');
 const profileData = require('./profileData');
 const newProfile = require('./newProfile');
 
+const static = require('./static');
+
 const port = process.env.PORT || 8080;
 
 const server = http
     .createServer((req, res) => {
         console.log(req.url);
         try {
-            let path = req.url.split('?')[0];
-            path = path.match(/\/[^\/?]*$/)[0];
-            if (/.*\.js$/.test(path)) {
-                fs.readFile('./static' + path, (err, data) => {
-                    if (err) {
-                        console.log(err);
-                    } else {
-                        res.writeHead(200, { 'Content-Type': 'text/javascript' });
-                        res.end(data);
-                    }
-                });
+            static.route(req, res);
 
-            } else if (/.*\.css$/.test(path)) {
-                let filename = path.match(/\/[^\/]+\.css/);
-                fs.readFile('./static/styles' + filename, (err, data) => {
-                    if (err) {
-                        console.log(err);
-                    } else {
-                        console.log(data.toString());
-                        res.writeHead(200, { 'Content-Type': 'text/css' });
-                        res.end(data);
-                    }
-                });
-            } else {
-                path = req.url.match(/\/[^\/?]*/)[0];
-                switch (path) {
-                    case '/': {
-                        fs.readFile('./static/index.html', (err, data) => {
-                            if (err) {
-                                console.log(err);
-                            } else {
-                                res.writeHead(200, { 'Content-Type': 'text/html' });
-                                res.end(data);
-                            }
-                        });
-                        break;
-                    }
-                    case '/generate': {
-                        console.log('generating entry');
-                        const query = qs.decode(req.url.split('?')[1]);
-                        console.log(query);
-                        newProfile.add(query, (answer) => {
-                            //redirect
-                            if (answer) {
-                                res.writeHead(302, { Location: answer });
-                                res.end();
-                            }
-                        });
-                        break;
-                    }
-                    case '/preview': {
-                        console.log('preview personal page');
-                        const query = qs.decode(req.url.split('?')[1]);
-                        console.log(query);
-                        res.writeHead(200, { 'Content-Type': 'text/html' });
-                        let page = generatePersonalPage(query);
-                        res.end(page);
-                        break;
-                    }
-                    case '/profile': {
-                        const key = req.url.match(/[^?\/]+$/)[0];
-                        profileData.getData(key, (content) => {
+            path = req.url.match(/\/[^\/?]*/)[0];
+            console.log('path', path);
+            switch (path) {
+                case '/': {
+                    console.log('home');
+                    fs.readFile('./static/index.html', (err, data) => {
+                        if (err) {
+                            console.log(err);
+                        } else {
                             res.writeHead(200, { 'Content-Type': 'text/html' });
-                            let page = generatePersonalPage(content);
-                            res.end(page);
-                        });
-                        break;
-                    }
+                            res.end(data);
+                        }
+                    });
+                    break;
                 }
+                case '/generate': {
+                    console.log('generating entry');
+                    const query = qs.decode(req.url.split('?')[1]);
+                    console.log(query);
+                    newProfile.add(query, (answer) => {
+                        //redirect
+                        if (answer) {
+                            res.writeHead(302, { Location: answer });
+                            res.end();
+                        }
+                    });
+                    break;
+                }
+                case '/preview': {
+                    console.log('preview personal page');
+                    const query = qs.decode(req.url.split('?')[1]);
+                    console.log(query);
+                    res.writeHead(200, { 'Content-Type': 'text/html' });
+                    let page = generatePersonalPage(query);
+                    res.end(page);
+                    break;
+                }
+                case '/profile': {
+                    console.log('profile');
+                    const key = req.url.match(/[^?\/]+$/)[0];
+                    profileData.getData(key, (content) => {
+                        res.writeHead(200, { 'Content-Type': 'text/html' });
+                        let page = generatePersonalPage(content);
+                        res.end(page);
+                    });
+                    break;
+                }
+
             }
         }
         catch (err) {
