@@ -13,56 +13,60 @@ const server = http
     .createServer((req, res) => {
         console.log(req.url);
         try {
-            static.route(req, res);
+            let path = req.url.split('?')[0];
+            if (/.*\.\w+$/.test(path)) {
+                static.route(req, res);
+            } else {
 
-            path = req.url.match(/\/[^\/?]*/)[0];
-            console.log('path', path);
-            switch (path) {
-                case '/': {
-                    console.log('home');
-                    fs.readFile('./static/index.html', (err, data) => {
-                        if (err) {
-                            console.log(err);
-                        } else {
-                            res.writeHead(200, { 'Content-Type': 'text/html' });
-                            res.end(data);
-                        }
-                    });
-                    break;
-                }
-                case '/generate': {
-                    console.log('generating entry');
-                    const query = qs.decode(req.url.split('?')[1]);
-                    console.log(query);
-                    newProfile.add(query, (answer) => {
-                        //redirect
-                        if (answer) {
-                            res.writeHead(302, { Location: answer });
-                            res.end();
-                        }
-                    });
-                    break;
-                }
-                case '/preview': {
-                    console.log('preview personal page');
-                    const query = qs.decode(req.url.split('?')[1]);
-                    console.log(query);
-                    res.writeHead(200, { 'Content-Type': 'text/html' });
-                    let page = generatePersonalPage(query);
-                    res.end(page);
-                    break;
-                }
-                case '/profile': {
-                    console.log('profile');
-                    const key = req.url.match(/[^?\/]+$/)[0];
-                    profileData.getData(key, (content) => {
+                path = req.url.match(/^\/[^\/?]*/)[0];
+                console.log('path', path);
+                switch (path) {
+                    case '/': {
+                        console.log('home');
+                        fs.readFile('./static/index.html', (err, data) => {
+                            if (err) {
+                                console.log(err);
+                            } else {
+                                res.writeHead(200, { 'Content-Type': 'text/html' });
+                                res.end(data);
+                            }
+                        });
+                        break;
+                    }
+                    case '/generate': {
+                        console.log('generating entry');
+                        const query = qs.decode(req.url.split('?')[1]);
+                        console.log(query);
+                        newProfile.add(query, (answer) => {
+                            //redirect
+                            if (answer) {
+                                res.writeHead(302, { Location: answer });
+                                res.end();
+                            }
+                        });
+                        break;
+                    }
+                    case '/preview': {
+                        console.log('preview personal page');
+                        const query = qs.decode(req.url.split('?')[1]);
+                        console.log(query);
                         res.writeHead(200, { 'Content-Type': 'text/html' });
-                        let page = generatePersonalPage(content);
+                        let page = generatePersonalPage(query);
                         res.end(page);
-                    });
-                    break;
-                }
+                        break;
+                    }
+                    case '/profile': {
+                        console.log('profile');
+                        const key = req.url.match(/[^?\/]+$/)[0];
+                        profileData.getData(key, (content) => {
+                            res.writeHead(200, { 'Content-Type': 'text/html' });
+                            let page = generatePersonalPage(content);
+                            res.end(page);
+                        });
+                        break;
+                    }
 
+                }
             }
         }
         catch (err) {
@@ -89,8 +93,8 @@ function generatePersonalPage(data) {
         </head>
          
         <body>
-            <h1 class=${data.class_1}>${data.text_1}</h1>
-            <h2 class=${data.class_2}>${data.text_2}</h2>
+            <div class=${data.class_1}>${data.text_1}</div>
+            <div class=${data.class_2}>${data.text_2}</div>
             <img src=${data.imageUrl} alt="Your image">
         </body>
         
