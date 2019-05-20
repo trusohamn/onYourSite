@@ -35,28 +35,29 @@ const server = http
                     }
                     case '/generate': {
                         console.log('generating entry');
-                        const query = qs.decode(req.url.split('?')[1]);
-                        console.log(query);
-                        const processedData = generateData(query);
-                        console.log(processedData);
-                        newProfile.add(processedData, (answer) => {
-                            //redirect
-                            if (answer) {
-                                res.writeHead(302, { Location: answer });
-                                res.end();
-                            }
+                        readBody(req, body => {
+                            const processedData = generateData(body);
+                            console.log(processedData);
+                            newProfile.add(processedData, (answer) => {
+                                //redirect
+                                if (answer) {
+                                    res.writeHead(302, { Location: answer });
+                                    res.end();
+                                }
+                            });
                         });
+
                         break;
                     }
                     case '/preview': {
                         console.log('preview personal page');
-                        const query = qs.decode(req.url.split('?')[1]);
-                        console.log(query);
-                        const processedData = generateData(query);
-                        console.log(processedData);
-                        res.writeHead(200, { 'Content-Type': 'text/html' });
-                        let page = generatePersonalPage(processedData);
-                        res.end(page);
+                        readBody(req, body => {
+                            const processedData = generateData(body);
+                            console.log(processedData);
+                            res.writeHead(200, { 'Content-Type': 'text/html' });
+                            let page = generatePersonalPage(processedData);
+                            res.end(page);
+                        });
                         break;
                     }
                     case '/profile': {
@@ -93,7 +94,6 @@ const server = http
 server.on('error', (e) => {
     console.log(e);
 })
-
 
 server.on('listening', () => console.log('Server is listening on port', server.address().port));
 
@@ -141,4 +141,19 @@ function generateData(rawData) {
     });
 
     return data;
+}
+
+function readBody(req, callback) {
+    var body = '';
+    req.on('data', function (data) {
+        body += data;
+        if (body.length > 1e6) {
+            // FLOOD ATTACK OR FAULTY CLIENT, NUKE REQUEST
+            request.connection.destroy();
+        }
+    });
+    req.on('end', function () {
+        var query = qs.parse(body);
+        callback(query);
+    });
 }
