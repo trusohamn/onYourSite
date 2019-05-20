@@ -56,22 +56,22 @@ const server = http
                         console.log(processedData);
                         res.writeHead(200, { 'Content-Type': 'text/html' });
                         let page = generatePersonalPage(processedData);
-                        res.end(page); 
+                        res.end(page);
                         break;
                     }
                     case '/profile': {
                         console.log('profile');
                         const key = req.url.match(/[^?\/]+$/)[0];
                         profileData.getData(key)
-                        .then ( content => {
-                            res.writeHead(200, { 'Content-Type': 'text/html' });
-                            let page = generatePersonalPage(content);
-                            res.end(page);
-                        })
-                        .catch(error => {
-                            console.log('error in promise handling');
-                            console.log(error);
-                        });
+                            .then(content => {
+                                res.writeHead(200, { 'Content-Type': 'text/html' });
+                                let page = generatePersonalPage(content);
+                                res.end(page);
+                            })
+                            .catch(error => {
+                                console.log('error in promise handling');
+                                console.log(error);
+                            });
 
                         /* //CALLBACK
                         profileData.getData(key, (content) => {
@@ -108,8 +108,10 @@ function generatePersonalPage(data) {
             <title>On Your Site</title>
             <link rel="stylesheet" href=${data.styles}>
         </head>    
-        <body>
-        <img src=${data.imageUrl} alt="Your image">`;
+        <body>`;
+        if (data.image.url) {
+            output += `<img src=${data.image.url} alt="Your image">`;
+        }
         data.divs.forEach((e) => {
             output += `<div class=${e.classN}>${e.text}</div>`;
         });
@@ -120,17 +122,20 @@ function generatePersonalPage(data) {
     return output;
 }
 
-function generateData(rawData){
+function generateData(rawData) {
     let data = {
-        divs : []
+        divs: [],
+        image: {}
     };
     Object.keys(rawData).forEach((k) => {
-        if(k === '_id' || k === 'imageUrl' || k === 'styles'){
+        if (k === 'imageUrl') {
+            data.image.url = rawData[k];
+        } else if (k === '_id' || k === 'styles') {
             data[k] = rawData[k];
-        } else if (/text/.test(k)){
+        } else if (/text/.test(k)) {
             data.divs.push({
-                text : rawData[k],
-                classN : rawData['class_' + k.match(/\d+/)[0]]
+                text: rawData[k],
+                classN: rawData['class_' + k.match(/\d+/)[0]]
             });
         }
     });
