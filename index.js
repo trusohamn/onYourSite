@@ -62,11 +62,24 @@ const server = http
                     case '/profile': {
                         console.log('profile');
                         const key = req.url.match(/[^?\/]+$/)[0];
+                        profileData.getData(key)
+                        .then ( content => {
+                            res.writeHead(200, { 'Content-Type': 'text/html' });
+                            let page = generatePersonalPage(content);
+                            res.end(page);
+                        })
+                        .catch(error => {
+                            console.log('error in promise handling');
+                            console.log(error);
+                        });
+
+                        /* //CALLBACK
                         profileData.getData(key, (content) => {
                             res.writeHead(200, { 'Content-Type': 'text/html' });
                             let page = generatePersonalPage(content);
                             res.end(page);
                         });
+                        */
                         break;
                     }
                 }

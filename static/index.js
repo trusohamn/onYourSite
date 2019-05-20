@@ -22,7 +22,6 @@ function route(req, res) {
             if (err) {
                 console.log(err);
             } else {
-                console.log(data.toString());
                 res.writeHead(200, { 'Content-Type': 'text/css' });
                 res.end(data);
             }
