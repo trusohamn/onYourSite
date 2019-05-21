@@ -2,47 +2,51 @@
 <html>
 
 <head>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>On Your Site</title>
-    <link rel="stylesheet" type="text/css" href="main.css">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>On Your Site</title>
+  <link href="https://fonts.googleapis.com/css?family=Muli&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 
 <body>
-    <div id="formDiv">
-        <form id="mainForm" action="/generate" method="POST">
-            path
-            <input name="_id" type="text"><br>
-            text field 1
-            <input name="text_1" type="text">
-            <select name="class_1">
-                <option value="class1">c1</option>
-                <option value="class2">c2</option>
-                <option value="class3">c3</option>
-                <option value="header">header</option>
-            </select>
-            <br>
-            text field 2
-            <input name="text_2" type="text">
-            <select name="class_2">
-                <option value="class1">c1</option>
-                <option value="class2">c2</option>
-                <option value="class3">c3</option>
-                <option value="header">header</option>
-            </select>
-            <br>
-            image url
-            <input name="imageUrl" type="text"><br>
-            style
-            <select name="styles">
-                <option value="red.css">red</option>
-                <option value="blue.css">blue</option>
-                <option value="black.css">black</option>
-            </select><br>
-            <input id="submit" type="submit" value="Generate profile"></input>
-            <input id="preview" type="submit" value="Preview"></input>
-        </form>
-    </div>
-    <script src='client.js'></script>
+  <div id="formDiv">
+    <form id="mainForm" action="/generate" method="POST">
+      <div class="container">
+        <span class="pathText">Path</span>
+        <input id="pathInput" name="_id" type="text"><br>
+        <span class="TxtField_1">Text field 1</span>
+        <input id="textField1" name="text_1" type="text">
+        <select id="selectField1" name="class_1">
+          <option value="class1">Style 1</option>
+          <option value="class2">Style 2</option>
+          <option value="class3">Style 3</option>
+          <option value="header">Header</option>
+        </select>
+        <br>
+        <span class="textField2">Text field 2</span>
+        <input id="textField2" name="text_2" type="text">
+        <select id="selectField2" name="class_2">
+          <option value="class1">Style 1</option>
+          <option value="class2">Style 2</option>
+          <option value="class3">Style 3</option>
+          <option value="header">Header</option>
+        </select>
+        <br>
+        <span class="imageUrlTxt">Image url</span>
+        <input id="imageUrlField" name="imageUrl" type="text"><br>
+        <span class="styleTxt">Style</span>
+        <select id="selectField3" name="styles">
+          <option value="red.css">Red</option>
+          <option value="blue.css">Blue</option>
+          <option value="black.css">Black</option>
+        </select><br>
+        <input id="submit" type="submit" value="Generate profile"></input>
+        <input id="preview" type="submit" value="Preview"></input>
+    </form>
+  </div>
+  </div>
+
+  <script src='client.js'></script>
 </body>
 
 </html>
