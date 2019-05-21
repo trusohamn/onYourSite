@@ -36,27 +36,27 @@ function findEntryPromise(key) {
         });
     });
 }
+const result =
+{
+    _id: 'styling',
+    divs: [
+        {
+            classN: 'class1',
+            text: 'first'
+        },
+        {
+            classN: 'class2',
+            text: 'second'
+        }
+    ],
+    image: {
+        url :'https://animals.sandiegozoo.org/sites/default/files/2016-09/animals_hero_tasmaniandevil.jpg'  
+    },
+    styles: 'black.css'
+};
 
 function findEntryMockPromise(key) {
     console.log('sending mock data with promise');
-    const result =
-    {
-        _id: 'styling',
-        divs: [
-            {
-                classN: 'class1',
-                text: 'first'
-            },
-            {
-                classN: 'class2',
-                text: 'second'
-            }
-        ],
-        image: {
-            url :'https://animals.sandiegozoo.org/sites/default/files/2016-09/animals_hero_tasmaniandevil.jpg'  
-        },
-        styles: 'black.css'
-    };
     return new Promise((resolve, reject) => {
         resolve(result);
     });
@@ -64,23 +64,6 @@ function findEntryMockPromise(key) {
 
 function findEntryMock(key, callback) {
     console.log('sending mock data');
-    const result =
-    {
-        _id: 'styling',
-        divs: [
-            {
-                classN: 'class1',
-                text: 'first'
-            },
-            {
-                classN: 'class2',
-                text: 'second'
-            }
-        ],
-        imageUrl:
-            'https://animals.sandiegozoo.org/sites/default/files/2016-09/animals_hero_tasmaniandevil.jpg',
-        styles: 'black.css'
-    }
     callback(result);
 }
 

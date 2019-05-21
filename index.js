@@ -153,3 +153,5 @@ function readBodyPromise(req) {
         });
     });
 }
+
+module.exports.generateData = generateData;
