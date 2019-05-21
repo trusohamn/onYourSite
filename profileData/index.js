@@ -47,6 +47,10 @@ const result =
         {
             classN: 'class2',
             text: 'second'
+        },
+        {
+            classN: 'header',
+            text: 'Tasmanian!!'
         }
     ],
     image: {

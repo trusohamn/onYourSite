@@ -1,6 +1,7 @@
 body {
     background : rgb(197, 42, 68);
     color :white;
+    text-align: center;
 }
 
 .class1 {
@@ -14,4 +15,12 @@ body {
 
  .class3 {
     font-size : 1 rem; 
+ }
+ .header {
+   font-size : 3rem;
+   color : gray;
+}
+ img {
+    border-radius : 10%;
+    width: 40%;
  }
