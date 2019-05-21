@@ -7,7 +7,7 @@ const newProfile = require('./newProfile');
 
 const static = require('./static');
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 8000;
 
 const server = http.createServer((req, res) => {
     console.log(req.url);
@@ -94,7 +94,7 @@ function generatePersonalPage(data) {
     let output;
     try {
         output = `
-        <!DOCTYPE html>
+    <!DOCTYPE html>
         <html>
         <head>
             <meta name="viewport" content="width=device-width,initial-scale=1">
