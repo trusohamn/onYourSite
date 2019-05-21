@@ -54,6 +54,7 @@ const result =
         }
     ],
     image: {
+        position: 'bottom',
         url :'https://animals.sandiegozoo.org/sites/default/files/2016-09/animals_hero_tasmaniandevil.jpg'  
     },
     styles: 'black.css'
