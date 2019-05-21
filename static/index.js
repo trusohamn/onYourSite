@@ -27,6 +27,17 @@ function route(req, res) {
             }
         });
 
+    } else if (/.*\.jpg$/.test(path)) {
+        console.log('sending css file');
+        let filename = path.match(/\/[^\/]+\.jpg/);
+        fs.readFile('./static/mat' + filename, (err, data) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.writeHead(200, { 'Content-Type': 'image/jpeg' });
+                res.end(data);
+            }
+        });
     }
 }
 
