@@ -28,9 +28,9 @@ function route(req, res) {
         });
 
     } else if (/.*\.jpg$/.test(path)) {
-        console.log('sending css file');
+        console.log('sending jpg file');
         let filename = path.match(/\/[^\/]+\.jpg/);
-        fs.readFile('./static/mat' + filename, (err, data) => {
+        fs.readFile('./static/material' + filename, (err, data) => {
             if (err) {
                 console.log(err);
             } else {
