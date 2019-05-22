@@ -36,12 +36,13 @@ const objectData = {
         position : 'top'
     }
 };
-const personalHtml = `<!DOCTYPE html>
-        <html>
-        <head>
-            <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>On Your Site</title>
-            <link rel="stylesheet" href=red.css>
+const personalHtml = `
+<!DOCTYPE html>
+     <html>
+     <head>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>On Your Site</title>
+        <link rel="stylesheet" href=red.css>
         </head>    
         <body><img src=https://cdn.pixabay.com/photo/2016/06/18/17/42/image-1465348_960_720.jpg alt="Your image"><div class=header>first</div><div class=normal>second</div><div class=bold>third</div></body></html> 
 `

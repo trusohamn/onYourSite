@@ -7,7 +7,7 @@ const profileData = require('./profileData');
 const newProfile = require('./newProfile');
 
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 8000;
 
 const express = require('express');
 const app = express();
@@ -85,7 +85,7 @@ function generatePersonalPage(data) {
     let output;
     try {
         output = `
-        <!DOCTYPE html>
+    <!DOCTYPE html>
         <html>
         <head>
             <meta name="viewport" content="width=device-width,initial-scale=1">
