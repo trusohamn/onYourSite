@@ -18,7 +18,7 @@ function updatePromise(entry) {
     });
 }
 
-function updatePromise(key) {
+function updateMockPromise(key) {
     console.log('calling updateMock');
     return new Promise((resolve, reject) => {
         resolve('/profile/1'); 
