@@ -1,10 +1,15 @@
 const previewButton = document.getElementById('preview');
+const modifyButton = document.getElementById('modify');
 const form = document.getElementById('mainForm');
 const addText = document.getElementById('addTextField');
 
 previewButton.addEventListener('click', (e) => {
     form.action = '/preview';
     form.submit();
+}); 
+modifyButton.addEventListener('click', (e) => {
+  form.action = '/modify';
+  form.submit();
 }); 
 
 addText.addEventListener('click', (e) => {

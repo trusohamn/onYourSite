@@ -5,7 +5,7 @@ const path = require('path');
 
 const profileData = require('./profileData');
 const newProfile = require('./newProfile');
-
+const updateProfile = require('./updataProfile');
 
 const port = process.env.PORT || 8000;
 
@@ -62,7 +62,7 @@ app.post('/preview', (req, res) => {
 });
 app.get('/profile/:id', (req, res) => {
     console.log('profile');
-    const key = req.params;
+    const key = req.params.id;
     profileData.getData(key)
         .then(content => {
             res.writeHead(200, { 'Content-Type': 'text/html' });
@@ -75,8 +75,26 @@ app.get('/profile/:id', (req, res) => {
         });
 });
 
+app.post('/modify', (req, res) => {
+    console.log('modify');
+    readBodyPromise(req)
+        .then(body => {
+            const processedData = generateData(body);
+            console.log(processedData);
+            return updateProfile.update(processedData);
+        })
+        .then(answer => {
+            //redirect
+            if (answer) {
+                res.writeHead(302, { Location: answer });
+                res.end();
+            }
+        });  
+    
+});
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+
+app.listen(port, () => console.log(`App listening on port ${port}!`))
 
 
 
