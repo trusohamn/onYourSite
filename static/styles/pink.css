@@ -1,0 +1,25 @@
+body {
+    background : rgb(232, 87, 176);
+    color :rgb(12, 233, 23);
+    text-align: right;
+}
+.class1 {
+    font-size : 2rem; 
+ }
+ 
+ .class2 {
+     font-size : 0.5rem; 
+     color : pink;
+  }
+ 
+  .class3 {
+     font-size : 1rem; 
+  }
+  .header {
+      font-size : 3rem;
+      color : gray;
+  }
+  img {
+    border-radius : 20%;
+    width: 40%;
+ }
