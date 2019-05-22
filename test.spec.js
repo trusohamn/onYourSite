@@ -1,6 +1,8 @@
 const assert = require('assert');
 const code = require('./index.js');
 
+var minify = require('html-minifier').minify;
+
 const rawData = {
     _id: 1,
     text_1: 'first',
@@ -9,8 +11,8 @@ const rawData = {
     class_2: 'normal',
     text_3: 'third',
     class_3: 'bold',
-    imageUrl: 'https://cdn.pixabay.com/photo/2016/06/18/17/42/image-1465348_960_720.jpg',
-    position: 'top',
+    image_url: 'https://cdn.pixabay.com/photo/2016/06/18/17/42/image-1465348_960_720.jpg',
+    image_position: 'top',
     styles: 'red.css'
 }
 
@@ -33,18 +35,24 @@ const objectData = {
     ],
     image: {
         url: 'https://cdn.pixabay.com/photo/2016/06/18/17/42/image-1465348_960_720.jpg',
-        position : 'top'
+        position: 'top'
     }
 };
-const personalHtml = `
-<!DOCTYPE html>
+const personalHtml = 
+    `<!DOCTYPE html>
      <html>
      <head>
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>On Your Site</title>
         <link rel="stylesheet" href=red.css>
-        </head>    
-        <body><img src=https://cdn.pixabay.com/photo/2016/06/18/17/42/image-1465348_960_720.jpg alt="Your image"><div class=header>first</div><div class=normal>second</div><div class=bold>third</div></body></html> 
+    </head>    
+    <body>
+        <img src=https://cdn.pixabay.com/photo/2016/06/18/17/42/image-1465348_960_720.jpg alt="Your image">
+        <div class=header>first</div>
+        <div class=normal>second</div>
+        <div class=bold>third</div>
+    </body>
+</html> 
 `
 
 describe('function generateData', () => {
@@ -55,6 +63,7 @@ describe('function generateData', () => {
 
 describe('function generatePersonalPage', () => {
     it('generates personal page html from data object', () => {
-        assert.deepEqual(personalHtml, code.generatePersonalPage(objectData));
+        assert.deepEqual(minify(personalHtml, {collapseWhitespace:true}), 
+        minify(code.generatePersonalPage(objectData), {collapseWhitespace:true}));
     });
 });

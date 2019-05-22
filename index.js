@@ -89,8 +89,8 @@ app.post('/modify', (req, res) => {
                 res.writeHead(302, { Location: answer });
                 res.end();
             }
-        });  
-    
+        });
+
 });
 
 
@@ -102,8 +102,8 @@ app.listen(port, () => console.log(`App listening on port ${port}!`))
 function generatePersonalPage(data) {
     let output;
     try {
-        output = `
-    <!DOCTYPE html>
+        output =
+            `<!DOCTYPE html>
         <html>
         <head>
             <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -130,15 +130,16 @@ function generateData(rawData) {
         image: {}
     };
     Object.keys(rawData).forEach((k) => {
-        if (k === 'imageUrl') {
-            data.image.url = rawData[k];
-        } else if (k === '_id' || k === 'styles') {
+        if (k === '_id' || k === 'styles') {
             data[k] = rawData[k];
         } else if (/text/.test(k)) {
             data.divs.push({
                 text: rawData[k],
                 classN: rawData['class_' + k.match(/\d+/)[0]]
             });
+        } else if (/image/.test(k)) {
+            const fieldName = k.split('_')[1];
+            data.image[fieldName] = rawData[k];
         }
     });
 
