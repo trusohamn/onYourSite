@@ -97,8 +97,6 @@ app.post('/modify', (req, res) => {
 app.listen(port, () => console.log(`App listening on port ${port}!`))
 
 
-
-
 function generatePersonalPage(data) {
     let output;
     try {
@@ -124,11 +122,20 @@ function generatePersonalPage(data) {
     return output;
 }
 
+function sortData(rawData){
+    //sort according to the number xxx_number
+    filteredData = [];
+
+    return filteredData;
+}
+
 function generateData(rawData) {
     let data = {
-        divs: [],
-        image: {}
+        divs: []
     };
+
+    rawData = sortData(rawData);
+
     Object.keys(rawData).forEach((k) => {
         if (k === '_id' || k === 'styles') {
             data[k] = rawData[k];
@@ -166,3 +173,4 @@ function readBodyPromise(req) {
 
 module.exports.generateData = generateData;
 module.exports.generatePersonalPage = generatePersonalPage;
+module.exports.sortData = sortData;
