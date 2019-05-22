@@ -1,7 +1,7 @@
 body {
   text-align: center;
   margin-top: 10%;
-  background-image: url('/static/material/bg.jpg');
+  background-image: url('/material/bg.jpg');
   background-repeat: no-repeat;
   background-size: cover;
 }

@@ -10,6 +10,7 @@ const rawData = {
     text_3: 'third',
     class_3: 'bold',
     imageUrl: 'https://cdn.pixabay.com/photo/2016/06/18/17/42/image-1465348_960_720.jpg',
+    position: 'top',
     styles: 'red.css'
 }
 
@@ -31,7 +32,8 @@ const objectData = {
         },
     ],
     image: {
-        url: 'https://cdn.pixabay.com/photo/2016/06/18/17/42/image-1465348_960_720.jpg'
+        url: 'https://cdn.pixabay.com/photo/2016/06/18/17/42/image-1465348_960_720.jpg',
+        position : 'top'
     }
 };
 const personalHtml = `<!DOCTYPE html>
