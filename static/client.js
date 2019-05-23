@@ -7,17 +7,27 @@ previewButton.addEventListener('click', (e) => {
   form.action = '/preview';
   e.preventDefault();
   //ajax request to /preview
-  const data = new FormData(document.querySelector('#mainForm'));
-  console.log(data);
-  const xhr = new XMLHttpRequest();
-  xhr.open('POST', '/preview', true);
-  xhr.onreadystatechange = function () { 
-    if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-      console.log(xhr.response);
-      document.getElementById('show-preview').innerHTML = xhr.response;
-    }
+  const formData = new FormData(document.querySelector('#mainForm'));
+  let jsonObject = {};
+  for (const [key, value] of formData.entries()) {
+    jsonObject[key] = value;
   }
-  xhr.send(data);
+
+  var url = '/preview';
+  var data = jsonObject;
+
+  fetch(url, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(res => res.json())
+    .then(res => {
+      document.getElementById('show-preview').srcdoc = res.newHTML;
+    })
+    .catch(error => console.error('Error:', error));
 
 
 });
@@ -41,11 +51,13 @@ addText.addEventListener('click', (e) => {
 
 */
 
-{/* <span class="textField2">Text field 2</span>
-<input id="textField2" name="text_2" type="text">
-<select id="selectField2" name="class_2">
-  <option value="class1">Style 1</option>
-  <option value="class2">Style 2</option>
-  <option value="class3">Style 3</option>
-  <option value="header">Header</option>
-</select> */}
+{
+  /* <span class="textField2">Text field 2</span>
+  <input id="textField2" name="text_2" type="text">
+  <select id="selectField2" name="class_2">
+    <option value="class1">Style 1</option>
+    <option value="class2">Style 2</option>
+    <option value="class3">Style 3</option>
+    <option value="header">Header</option>
+  </select> */
+}
