@@ -98,6 +98,7 @@ app.listen(port, () => console.log(`App listening on port ${port}!`))
 
 
 function generatePersonalPage(data) {
+    
     let output;
     try {
         output =
@@ -109,11 +110,12 @@ function generatePersonalPage(data) {
             <link rel="stylesheet" href=${data.styles}>
         </head>    
         <body>`;
-        if (data.image.url) {
-            output += `<img src=${data.image.url} alt="Your image">`;
-        }
         data.divs.forEach((e) => {
-            output += `<div class=${e.classN}>${e.text}</div>`;
+            if (e.type === 'image') {
+                output += `<img src=${e.url} alt="Your image" class=${e.classN}>`;
+            } else if (e.type === 'text'){
+                output += `<div class=${e.classN}>${e.text}</div>`;
+            }
         });
         output += `</body></html> `;
     } catch (err) {

@@ -68,18 +68,18 @@ const personalHtml =
         <div class=header>first</div>
         <div class=normal>second</div>
         <div class=bold>third</div>
-        <img src=https://cdn.pixabay.com/photo/2016/06/18/17/42/image-1465348_960_720.jpg alt="Your image">
+        <img src=https://cdn.pixabay.com/photo/2016/06/18/17/42/image-1465348_960_720.jpg alt="Your image" class="top">
     </body>
 </html> 
 `
 describe('function sortData', () => {
-    it('sorts data accordingly to the index number on the last position', () => {
+    xit('sorts data accordingly to the index number on the last position', () => {
         assert.deepEqual(rawSortedData, code.sortData(rawData));
     });
 });
 
 describe('function generateData', () => {
-    it.only('parses data', () => {
+    it('parses data', () => {
         assert.deepEqual(objectData, code.generateData(rawSortedData));
     });
 });
