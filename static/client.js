@@ -15,16 +15,18 @@ previewButton.addEventListener('click', (e) => {
 
   var url = '/preview';
   var data = jsonObject;
+  console.log(data);
 
   fetch(url, {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
     .then(res => res.json())
     .then(res => {
+      console.log(res.newHTML);
       document.getElementById('show-preview').srcdoc = res.newHTML;
     })
     .catch(error => console.error('Error:', error));
@@ -51,7 +53,7 @@ addText.addEventListener('click', (e) => {
 
 */
 
-{
+
   /* <span class="textField2">Text field 2</span>
   <input id="textField2" name="text_2" type="text">
   <select id="selectField2" name="class_2">
@@ -60,4 +62,4 @@ addText.addEventListener('click', (e) => {
     <option value="class3">Style 3</option>
     <option value="header">Header</option>
   </select> */
-}
+
