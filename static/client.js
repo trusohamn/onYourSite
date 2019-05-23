@@ -4,13 +4,27 @@ const form = document.getElementById('mainForm');
 const addText = document.getElementById('addTextField');
 
 previewButton.addEventListener('click', (e) => {
-    form.action = '/preview';
-    form.submit();
-}); 
+  form.action = '/preview';
+  e.preventDefault();
+  //ajax request to /preview
+  const data = new FormData(document.querySelector('#mainForm'));
+  console.log(data);
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', '/preview', true);
+  xhr.onreadystatechange = function () { 
+    if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+      console.log(xhr.response);
+      document.getElementById('show-preview').innerHTML = xhr.response;
+    }
+  }
+  xhr.send(data);
+
+
+});
 modifyButton.addEventListener('click', (e) => {
   form.action = '/modify';
   form.submit();
-}); 
+});
 
 addText.addEventListener('click', (e) => {
 

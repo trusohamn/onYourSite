@@ -204,5 +204,6 @@ select {
 }
 
 iframe {
+  resize: both;
   background-color: #C9EF83;
 }

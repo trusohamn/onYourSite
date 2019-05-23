@@ -2,61 +2,63 @@
 <html>
 
 <head>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>On Your Site</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>On Your Site</title>
 
-  <link href="https://fonts.googleapis.com/css?family=Muli&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 
 <body>
-  <div id="formDiv">
-    <form id="mainForm" action="/generate" method="POST">
-      <div class="container">
-        <span class="pathText">Path</span>
-        <input id="pathInput" name="_id" type="text"><br>
-        <span class="TxtField_1">First Line</span>
-        <input id="textField1" name="text_1" type="text">
-        <select id="selectField1" name="class_1">
-          <option value="class1">Style 1</option>
-          <option value="class2">Style 2</option>
-          <option value="class3">Style 3</option>
-          <option value="header">Header</option>
-        </select>
-        <br>
-        <span class="textField2">Second Line</span>
-        <input id="textField2" name="text_2" type="text">
-        <select id="selectField2" name="class_2">
-          <option value="class1">Style 1</option>
-          <option value="class2">Style 2</option>
-          <option value="class3">Style 3</option>
-          <option value="header">Header</option>
-        </select>
-        <br>
-        <span class="imageUrlTxt">Image url</span>
-        <input id="imageUrlField" name="image_3" type="text"><br>
-        <span class="imageClass">Image class</span>
-        <input id="imageClassField name="class_3" type="text"><br>
-        <span class="styleTxt">Style</span>
-        <select id="selectField3" name="styles">
-          <option value="red.css">Red</option>
-          <option value="blue.css">Blue</option>
-          <option value="black.css">Black</option>
-        </select><br>
-        <button id="addTextField">Add text</button>
-        <input id="submit" type="submit" value="Generate profile"></input>
-        <input id="preview" type="submit" value="Preview"></input>
-        <input id="modify" type="submit" value="Modify profile"></input>
-    </form>
-  </div>
-  </div>
+    <div id="formDiv">
+        <form id="mainForm" action="/generate" method="POST">
+            <div class="container">
+                <span class="pathText">Path</span>
+                <input id="pathInput" name="_id" type="text"><br>
+                <span class="TxtField_1">First Line</span>
+                <input id="textField1" name="text_1" type="text">
+                <select id="selectField1" name="class_1">
+                    <option value="class1">Style 1</option>
+                    <option value="class2">Style 2</option>
+                    <option value="class3">Style 3</option>
+                    <option value="header">Header</option>
+                </select>
+                <br>
+                <span class="textField2">Second Line</span>
+                <input id="textField2" name="text_2" type="text">
+                <select id="selectField2" name="class_2">
+                    <option value="class1">Style 1</option>
+                    <option value="class2">Style 2</option>
+                    <option value="class3">Style 3</option>
+                    <option value="header">Header</option>
+                </select>
+                <br>
+                <span class="imageUrlTxt">Image url</span>
+                <input id="imageUrlField" name="image_3" type="text"><br>
+                <span class="imageClass">Image class</span>
+                <input id="imageClassField name=" class_3" type="text"><br>
+                <span class="styleTxt">Style</span>
+                <select id="selectField3" name="styles">
+                    <option value="red.css">Red</option>
+                    <option value="blue.css">Blue</option>
+                    <option value="black.css">Black</option>
+                </select><br>
+                <button id="addTextField">Add text</button>
+                <input id="submit" type="submit" value="Generate profile"></input>
+                <input id="preview" type="submit" value="Preview"></input>
+                <input id="modify" type="submit" value="Modify profile"></input>
+        </form>
+    </div>
+    </div>
 
 
-  <script src='client.js'></script>
+    <div id="show-preview">
+
+    </div>
+
+    <script src='client.js'></script>
 </body>
 
-<iframe src="https://on-your-site.herokuapp.com/preview">
-</iframe>
 
 </html>
