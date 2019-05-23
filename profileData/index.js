@@ -38,26 +38,30 @@ function findEntryPromise(key) {
 }
 const result =
 {
-    _id: 'styling',
+    _id: 1,
+    styles: 'red.css',
     divs: [
-        {
-            classN: 'class1',
-            text: 'first'
+        {   
+            type: 'text',
+            text: 'first',
+            classN: 'header'
         },
         {
-            classN: 'class2',
-            text: 'second'
+            type: 'text',
+            text: 'second',
+            classN: 'normal'
         },
         {
-            classN: 'header',
-            text: 'Tasmanian!!'
+            type: 'text',
+            text: 'third',
+            classN: 'bold'
+        },
+        {
+            type: 'image',
+            url: 'https://cdn.pixabay.com/photo/2016/06/18/17/42/image-1465348_960_720.jpg',
+            classN: 'top'
         }
-    ],
-    image: {
-        position: 'bottom',
-        url :'https://animals.sandiegozoo.org/sites/default/files/2016-09/animals_hero_tasmaniandevil.jpg'  
-    },
-    styles: 'black.css'
+    ]
 };
 
 function findEntryMockPromise(key) {
