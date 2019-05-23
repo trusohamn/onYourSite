@@ -37,7 +37,7 @@ app.post('/generate', (req, res) => {
     console.log('generating entry');
     readBodyPromise(req)
         .then(body => {
-            const processedData = generateData(body);
+            const processedData = generateData(qs.parse(body));
             console.log(processedData);
             return newProfile.add(processedData);
         })
@@ -53,11 +53,12 @@ app.post('/preview', (req, res) => {
     console.log('preview personal page');
     readBodyPromise(req)
         .then(body => {
-            const processedData = generateData(body);
-            console.log(processedData);
+            console.log('rawbody', JSON.parse(body));
+            const processedData = generateData(JSON.parse(body));
+            console.log('processedData', processedData);
             res.writeHead(200, { 'Content-Type': 'text/html' });
             let page = generatePersonalPage(processedData);
-            res.end(page);
+            res.end(JSON.stringify({newHTML : page}));
         });
 });
 app.get('/profile/:id', (req, res) => {
@@ -79,8 +80,8 @@ app.post('/modify', (req, res) => {
     console.log('modify');
     readBodyPromise(req)
         .then(body => {
-            const processedData = generateData(body);
-            console.log(processedData);
+            const processedData = generateData(qs.parse(body));
+            //console.log(processedData);
             return updateProfile.update(processedData);
         })
         .then(answer => {
@@ -171,8 +172,7 @@ function readBodyPromise(req) {
             }
         });
         req.on('end', function () {
-            var query = qs.parse(body);
-            resolve(query);
+            resolve(body);
         });
     });
 }

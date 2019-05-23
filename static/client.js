@@ -7,17 +7,28 @@ previewButton.addEventListener('click', (e) => {
   form.action = '/preview';
   e.preventDefault();
   //ajax request to /preview
-  const data = new FormData(document.querySelector('#mainForm'));
-  console.log(data);
-  const xhr = new XMLHttpRequest();
-  xhr.open('POST', '/preview', true);
-  xhr.onreadystatechange = function () { 
-    if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-      console.log(xhr.response);
-      document.getElementById('show-preview').innerHTML = xhr.response;
-    }
+  const formData = new FormData(document.querySelector('#mainForm'));
+  let jsonObject = {};
+  for (const [key, value] of formData.entries()) {
+    jsonObject[key] = value;
   }
-  xhr.send(data);
+
+  var url = '/preview';
+  var data = jsonObject;
+  console.log(data);
+
+  fetch(url, {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+    .then(res => res.json())
+    .then(res => {
+      document.getElementById('show-preview').innerHTML = res.newHTML;
+    })
+    .catch(error => console.error('Error:', error));
 
 
 });
