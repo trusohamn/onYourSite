@@ -4,7 +4,6 @@ const form = document.getElementById('mainForm');
 const addText = document.getElementById('addTextField');
 
 previewButton.addEventListener('click', (e) => {
-  form.action = '/preview';
   e.preventDefault();
   //ajax request to /preview
   const formData = new FormData(document.querySelector('#mainForm'));
@@ -12,7 +11,6 @@ previewButton.addEventListener('click', (e) => {
   for (const [key, value] of formData.entries()) {
     jsonObject[key] = value;
   }
-
   var url = '/preview';
   var data = jsonObject;
   console.log(data);
@@ -26,10 +24,10 @@ previewButton.addEventListener('click', (e) => {
   })
     .then(res => res.json())
     .then(res => {
-      document.getElementById('show-preview').innerHTML = res.newHTML;
+      console.log(res.newHTML);
+      document.getElementById('show-preview').srcdoc = res.newHTML;
     })
     .catch(error => console.error('Error:', error));
-
 
 });
 modifyButton.addEventListener('click', (e) => {
@@ -52,11 +50,13 @@ addText.addEventListener('click', (e) => {
 
 */
 
-{/* <span class="textField2">Text field 2</span>
-<input id="textField2" name="text_2" type="text">
-<select id="selectField2" name="class_2">
-  <option value="class1">Style 1</option>
-  <option value="class2">Style 2</option>
-  <option value="class3">Style 3</option>
-  <option value="header">Header</option>
-</select> */}
+
+  /* <span class="textField2">Text field 2</span>
+  <input id="textField2" name="text_2" type="text">
+  <select id="selectField2" name="class_2">
+    <option value="class1">Style 1</option>
+    <option value="class2">Style 2</option>
+    <option value="class3">Style 3</option>
+    <option value="header">Header</option>
+  </select> */
+

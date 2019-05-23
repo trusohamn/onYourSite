@@ -27,7 +27,9 @@ app.get('/', (req, res) => {
         if (err) {
             console.log(err);
         } else {
-            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.writeHead(200, {
+                'Content-Type': 'text/html'
+            });
             res.end(data);
         }
     });
@@ -44,7 +46,9 @@ app.post('/generate', (req, res) => {
         .then(answer => {
             //redirect
             if (answer) {
-                res.writeHead(302, { Location: answer });
+                res.writeHead(302, {
+                    Location: answer
+                });
                 res.end();
             }
         });
@@ -56,9 +60,13 @@ app.post('/preview', (req, res) => {
             console.log('rawbody', JSON.parse(body));
             const processedData = generateData(JSON.parse(body));
             console.log('processedData', processedData);
-            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.writeHead(200, {
+                'Content-Type': 'text/html'
+            });
             let page = generatePersonalPage(processedData);
-            res.end(JSON.stringify({newHTML : page}));
+            res.end(JSON.stringify({
+                newHTML: page
+            }));
         });
 });
 app.get('/profile/:id', (req, res) => {
@@ -66,7 +74,9 @@ app.get('/profile/:id', (req, res) => {
     const key = req.params.id;
     profileData.getData(key)
         .then(content => {
-            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.writeHead(200, {
+                'Content-Type': 'text/html'
+            });
             let page = generatePersonalPage(content);
             res.end(page);
         })
@@ -77,6 +87,7 @@ app.get('/profile/:id', (req, res) => {
 });
 
 app.post('/modify', (req, res) => {
+
     console.log('modify');
     readBodyPromise(req)
         .then(body => {
@@ -87,7 +98,9 @@ app.post('/modify', (req, res) => {
         .then(answer => {
             //redirect
             if (answer) {
-                res.writeHead(302, { Location: answer });
+                res.writeHead(302, {
+                    Location: answer
+                });
                 res.end();
             }
         });
@@ -99,7 +112,7 @@ app.listen(port, () => console.log(`App listening on port ${port}!`))
 
 
 function generatePersonalPage(data) {
-    
+
     let output;
     try {
         output =
@@ -114,7 +127,7 @@ function generatePersonalPage(data) {
         data.divs.forEach((e) => {
             if (e.type === 'image') {
                 output += `<img src=${e.url} alt="Your image" class=${e.classN}>`;
-            } else if (e.type === 'text'){
+            } else if (e.type === 'text') {
                 output += `<div class=${e.classN}>${e.text}</div>`;
             }
         });
@@ -125,7 +138,7 @@ function generatePersonalPage(data) {
     return output;
 }
 
-function sortData(rawData){
+function sortData(rawData) {
     //sort according to the number xxx_number
     filteredData = [];
 
@@ -156,7 +169,6 @@ function generateData(rawData) {
             });
         }
     });
-
     return data;
 }
 
@@ -176,6 +188,7 @@ function readBodyPromise(req) {
         });
     });
 }
+
 
 module.exports.generateData = generateData;
 module.exports.generatePersonalPage = generatePersonalPage;
