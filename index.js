@@ -134,19 +134,23 @@ function generateData(rawData) {
         divs: []
     };
 
-    rawData = sortData(rawData);
+    // rawData = sortData(rawData);
 
     Object.keys(rawData).forEach((k) => {
         if (k === '_id' || k === 'styles') {
             data[k] = rawData[k];
         } else if (/text/.test(k)) {
             data.divs.push({
+                type: 'text',
                 text: rawData[k],
                 classN: rawData['class_' + k.match(/\d+/)[0]]
             });
         } else if (/image/.test(k)) {
-            const fieldName = k.split('_')[1];
-            data.image[fieldName] = rawData[k];
+            data.divs.push({
+                type: 'image',
+                url: rawData[k],
+                classN: rawData['class_' + k.match(/\d+/)[0]]
+            });
         }
     });
 

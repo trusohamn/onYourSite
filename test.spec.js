@@ -18,36 +18,40 @@ const rawData = {
 
 const rawSortedData = {
     _id: 1,
+    styles: 'red.css',
     text_1: 'first',
     class_1: 'header',
     text_2: 'second',
     class_2: 'normal',
     text_3: 'third',
     class_3: 'bold',
-    image_url_4: 'https://cdn.pixabay.com/photo/2016/06/18/17/42/image-1465348_960_720.jpg',
-    image_position_4: 'top',
-    styles: 'red.css'
+    image_4: 'https://cdn.pixabay.com/photo/2016/06/18/17/42/image-1465348_960_720.jpg',
+    class_4: 'top'
 }
 
 const objectData = {
     _id: 1,
     styles: 'red.css',
     divs: [
-        {
+        {   
+            type: 'text',
             text: 'first',
             classN: 'header'
         },
         {
+            type: 'text',
             text: 'second',
             classN: 'normal'
         },
         {
+            type: 'text',
             text: 'third',
             classN: 'bold'
         },
         {
+            type: 'image',
             url: 'https://cdn.pixabay.com/photo/2016/06/18/17/42/image-1465348_960_720.jpg',
-            position: 'top'
+            classN: 'top'
         }
     ]
 
@@ -75,7 +79,7 @@ describe('function sortData', () => {
 });
 
 describe('function generateData', () => {
-    it('parses data', () => {
+    it.only('parses data', () => {
         assert.deepEqual(objectData, code.generateData(rawSortedData));
     });
 });
