@@ -4,7 +4,6 @@ const form = document.getElementById('mainForm');
 const addText = document.getElementById('addTextField');
 
 previewButton.addEventListener('click', (e) => {
-  form.action = '/preview';
   e.preventDefault();
   //ajax request to /preview
   const formData = new FormData(document.querySelector('#mainForm'));
@@ -12,7 +11,6 @@ previewButton.addEventListener('click', (e) => {
   for (const [key, value] of formData.entries()) {
     jsonObject[key] = value;
   }
-
   var url = '/preview';
   var data = jsonObject;
   console.log(data);
@@ -30,7 +28,6 @@ previewButton.addEventListener('click', (e) => {
       document.getElementById('show-preview').srcdoc = res.newHTML;
     })
     .catch(error => console.error('Error:', error));
-
 
 });
 modifyButton.addEventListener('click', (e) => {
