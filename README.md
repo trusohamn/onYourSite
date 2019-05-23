@@ -1,3 +1,3 @@
-# onYourSite
+# ImYourSite
 
 https://on-your-site.herokuapp.com/
