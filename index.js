@@ -126,7 +126,9 @@ function generatePersonalPage(data) {
         <body>`;
         data.divs.forEach((e) => {
             if (e.type === 'image') {
-                output += `<img src=${e.url} alt="Your image" class=${e.classN}>`;
+                if(e.url){
+                    output += `<img src=${e.url} alt="Your image" class=${e.classN}>`;
+                }
             } else if (e.type === 'text') {
                 output += `<div class=${e.classN}>${e.text}</div>`;
             }
