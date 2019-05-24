@@ -50,6 +50,9 @@ app.post('/generate', (req, res) => {
                 });
                 res.end();
             }
+        })
+        .catch(error => {
+            res.end('Profile already exists!! \n' + error.message);
         });
 });
 app.post('/preview', (req, res) => {
@@ -128,8 +131,14 @@ app.post('/modify', (req, res) => {
 });
 
 
+
+
+
+
+
 app.listen(port, () => console.log(`App listening on port ${port}!`))
 
+//////////////////////////
 
 function generatePersonalPage(data) {
 
