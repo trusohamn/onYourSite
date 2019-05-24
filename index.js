@@ -85,6 +85,27 @@ app.get('/profile/:id', (req, res) => {
             console.log(error);
         });
 });
+app.get('/blocking', (req, res) => {
+    // let block = true;
+    // setTimeout(() => {
+    //     block = false;
+    // },
+    //     1000);
+    console.log('BLOCKED!');
+    // while (block) {
+    // };
+    for (i = 0; i < 6e9; i++) {
+        if (i % 1000000000 === 0) {
+            console.log(i);
+        }
+    }
+    console.log('ACTIVE!');
+    res.writeHead(302, {
+        Location: '/'
+    });
+    res.end();
+
+});
 
 app.post('/modify', (req, res) => {
 
@@ -126,7 +147,7 @@ function generatePersonalPage(data) {
         <body>`;
         data.divs.forEach((e) => {
             if (e.type === 'image') {
-                if(e.url){
+                if (e.url) {
                     output += `<img src=${e.url} alt="Your image" class=${e.classN}>`;
                 }
             } else if (e.type === 'text') {
