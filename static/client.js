@@ -1,7 +1,6 @@
 const previewButton = document.getElementById('preview');
 const modifyButton = document.getElementById('modify');
 const form = document.getElementById('mainForm');
-const addText = document.getElementById('addTextField');
 
 previewButton.addEventListener('click', (e) => {
   e.preventDefault();
@@ -30,14 +29,12 @@ previewButton.addEventListener('click', (e) => {
     .catch(error => console.error('Error:', error));
 
 });
-modifyButton.addEventListener('click', (e) => {
-  form.action = '/modify';
-  form.submit();
-});
 
-addText.addEventListener('click', (e) => {
+// modifyButton.addEventListener('click', (e) => {
+//   form.action = '/modify';
+//   form.submit();
+// });
 
-});
 
 //jquery ajax flickr
 $('#flickrForm').submit((e) => {
