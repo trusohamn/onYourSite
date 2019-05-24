@@ -50,6 +50,9 @@ app.post('/generate', (req, res) => {
                 });
                 res.end();
             }
+        })
+        .catch(error => {
+            res.end('Profile already exists!! \n' + error.message);
         });
 });
 app.post('/preview', (req, res) => {
@@ -66,6 +69,9 @@ app.post('/preview', (req, res) => {
             res.end(JSON.stringify({
                 newHTML: page
             }));
+        })
+        .catch(error => {
+            console.log(error.message);
         });
 });
 app.get('/profile/:id', (req, res) => {
@@ -85,15 +91,9 @@ app.get('/profile/:id', (req, res) => {
         });
 });
 app.get('/blocking', (req, res) => {
-    // let block = true;
-    // setTimeout(() => {
-    //     block = false;
-    // },
-    //     1000);
     console.log('BLOCKED!');
-    // while (block) {
-    // };
-    for (i = 0; i < 6e9; i++) {
+
+    for (i = 0; i < 4e9; i++) {
         if (i % 1000000000 === 0) {
             console.log(i);
         }
@@ -127,9 +127,9 @@ app.post('/modify', (req, res) => {
 
 });
 
-
 app.listen(port, () => console.log(`App listening on port ${port}!`))
 
+//////////////////////////
 
 function generatePersonalPage(data) {
 
