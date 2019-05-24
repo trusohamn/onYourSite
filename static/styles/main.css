@@ -4,15 +4,14 @@
 
 html {
   width: 100%;
-  height: 100%;
 }
 
 body {
   text-align: center;
-  margin-top: 10%;
+  margin-top: 5%;
   background-image: url('/material/bg.jpg');
   background-repeat: repeat;
-  background-size: 100% 100%;
+  background-size: cover;
   font-family: var(--main-font);
   font-size: 20px;
   font-weight: bold;
@@ -28,7 +27,7 @@ body {
 input {
   margin-top: 5px;
   margin-bottom: 5px;
-  background-color: #4F5D75;
+  background-color: rgb(24, 28, 36);
   color: white;
   padding: 5px;
   font-size: 20px;
@@ -44,7 +43,7 @@ input:focus {
 
 select {
   padding: 3px 0px 3px 18px;
-  background-color: #4F5D75;
+  background-color: rgb(24, 28, 36);
   color: white;
   font-size: 15px;
   font-family: var(--main-font);
@@ -103,7 +102,7 @@ select:focus {
 .container {
   display: grid;
   grid-template-columns: 1fr 3fr 3fr 100px;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-column-gap: 15px;
   grid-row-gap: 15px;
   justify-items: stretch;
@@ -208,9 +207,6 @@ iframe {
     height: 60%;
     margin: auto auto;
   }
-  body{
-    top:5%;
-  }
 
   input {
     font-size: 12px;
@@ -230,12 +226,15 @@ iframe {
     height: 60%;
     margin: auto auto;
   }
+
   body {
-    top:5%;
+    top: 5%;
   }
+
   input {
     font-size: 12px;
   }
+
   #show-preview {
     height: 150px;
     width: 300px;
@@ -251,8 +250,8 @@ iframe {
     margin: auto auto;
   }
 
-  body{
-    top:5%;
+  body {
+    top: 5%;
   }
 
 
@@ -280,7 +279,7 @@ iframe {
   }
 
   body {
-    top:5%;
+    top: 5%;
   }
 
 
@@ -303,10 +302,6 @@ iframe {
     width: 90%;
     height: 90%;
     margin: auto auto;
-  }
-
-  body{
-    top:5%;
   }
 
   input {
