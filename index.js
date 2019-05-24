@@ -93,7 +93,7 @@ app.get('/profile/:id', (req, res) => {
 app.get('/blocking', (req, res) => {
     console.log('BLOCKED!');
 
-    for (i = 0; i < 6e9; i++) {
+    for (i = 0; i < 4e9; i++) {
         if (i % 1000000000 === 0) {
             console.log(i);
         }
