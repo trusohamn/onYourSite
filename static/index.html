@@ -14,40 +14,35 @@
   <div id="formDiv">
     <form id="mainForm" action="/generate" method="POST">
       <div class="container">
-        <span class="pathText">Path</span>
+        <!-- <span class="pathText">Path</span> -->
+        <label class="pathText">Path</label>
         <input id="pathInput" name="_id" type="text"><br>
-        <span class="TxtField_1">First Line</span>
+        <!-- <span class="txtField_1">First Line</span> -->
+        <label class="txtField_1">Text Field 1</label>
         <input id="textField1" name="text_1" type="text">
         <select id="selectField1" name="class_1">
           <option value="class1">Style 1</option>
           <option value="class2">Style 2</option>
           <option value="class3">Style 3</option>
           <option value="header">Header</option>
-        </select>
-        <br>
-        <span class="textField2">Second Line</span>
-        <input id="textField2" name="text_2" type="text">
-        <select id="selectField2" name="class_2">
-          <option value="class1">Style 1</option>
-          <option value="class2">Style 2</option>
-          <option value="class3">Style 3</option>
-          <option value="header">Header</option>
-        </select>
-        <br>
-        <span class="imageUrlTxt">Image url</span>
+        </select><br>
+        <!-- <span class="imageUrlTxt">Image url</span> -->
+        <label class="imageUrlTxt">imageUrlTxt</label>
         <input id="imageUrlField" name="imageUrl" type="text"><br>
-        <span class="styleTxt">Style</span>
-        <select id="selectField3" name="styles">
+        <!-- <span class="styleTxt">Style</span> -->
+        <label class="styleTxt">Style</label>
+        <select id="selectField4" name="styles">
           <option value="red.css">Red</option>
           <option value="blue.css">Blue</option>
           <option value="black.css">Black</option>
         </select><br>
-        <button id="addTextField">Add text</button>
         <input id="submit" type="submit" value="Generate profile"></input>
         <input id="preview" type="submit" value="Preview"></input>
         <input id="modify" type="submit" value="Modify profile"></input>
     </form>
   </div>
+  <button id="removeTextField">Remove text</button>
+  <button id="addTextField">Add text</button>
   </div>
 
 

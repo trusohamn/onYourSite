@@ -2,19 +2,89 @@ const previewButton = document.getElementById('preview');
 const modifyButton = document.getElementById('modify');
 const form = document.getElementById('mainForm');
 const addText = document.getElementById('addTextField');
+const removeText = document.getElementById('removeTextField');
+const select_1 = document.getElementById('mainForm').querySelectorAll('select')[0];
+const inputList = document.getElementsByTagName('input'); 
+
+
+
 
 previewButton.addEventListener('click', (e) => {
-    form.action = '/preview';
-    form.submit();
-}); 
+  form.action = '/preview';
+  form.submit();
+});
 modifyButton.addEventListener('click', (e) => {
   form.action = '/modify';
   form.submit();
-}); 
+});
 
-addText.addEventListener('click', (e) => {
+const textFieldCheck = () => {
+  if(inputList.textField2){
+    return 3; 
+  } else if (inputList.textField1){
+    return 2; 
+  }
+}
+
+addText.addEventListener('click', () => {
+  const textFieldNode = document.getElementById('textField1');
+  // let textNode = document.createElement('div');
+  const x = textFieldCheck();
+
+  const newTxtField = `<span class="textField${x}">Text field ${x}</span>`;
+  const newInput = `<input id="textField${x}" name="text_${x}" type="text">`;
+  const newSelect =
+    `<select id="selectField${x}" name="class_${x}">
+     <option value="class1">Style 1</option>
+     <option value="class2">Style 2</option>
+     <option value="class3">Style 3</option>
+     <option value="header">Header</option>
+     </select>`
+
+  select_1.insertAdjacentHTML("afterend", newTxtField);
+  select_1.insertAdjacentHTML("afterend", newInput);
+  select_1.insertAdjacentHTML("afterend", newSelect);
 
 });
+
+removeText.addEventListener('click', () => {
+  if(inputList.textField3){
+    form.removeChild(inputList.textField3);
+  } else if (inputList.textField2){
+    form.removeChild(inputList.textField2);
+  }
+});
+
+
+ 
+
+
+  // targetElement.insertAdjacentElement(position, element);
+
+
+
+
+  // textFieldNode.after(textNode);
+
+
+
+// targetElement.insertAdjacentElement(position, element);
+
+
+/*
+// Create a new element
+var newNode = document.createElement('div');
+
+// Get the reference node
+var referenceNode = document.querySelector('#some-element');
+
+// Insert the new node before the reference node
+referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+*/
+
+
+//#removeTextField
+//#addTextField
 
 // add an ifrome to preview the website without refreshing the page. 
 
@@ -27,11 +97,8 @@ addText.addEventListener('click', (e) => {
 
 */
 
-{/* <span class="textField2">Text field 2</span>
-<input id="textField2" name="text_2" type="text">
-<select id="selectField2" name="class_2">
-  <option value="class1">Style 1</option>
-  <option value="class2">Style 2</option>
-  <option value="class3">Style 3</option>
-  <option value="header">Header</option>
-</select> */}
+
+// let htmlStyles = window.getComputedStyle(document.querySelector("html"));
+// let rowNum = parseInt(htmlStyles.getPropertyValue("--rowNum"));
+
+// document.documentElement.style.setProperty("--rowNum", 6);
