@@ -52,6 +52,7 @@ $('#flickrForm').submit((e) => {
   function replaceImgUrl(data) {
     const randomI = Math.floor(Math.random() * data.items.length);
     document.getElementById('imageUrlField').value = data.items[randomI].media.m;
+    previewButton.click();
   }
   $.getJSON(flickrAPI, flickrOptions, replaceImgUrl);
 })
