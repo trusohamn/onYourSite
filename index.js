@@ -1,5 +1,4 @@
 const fs = require('fs');
-const http = require('http');
 const qs = require('querystring');
 const path = require('path');
 
@@ -51,6 +50,9 @@ app.post('/generate', (req, res) => {
                 });
                 res.end();
             }
+        })
+        .catch(error => {
+            res.end('Profile already exists!! \n' + error.message);
         });
 });
 app.post('/preview', (req, res) => {
@@ -67,6 +69,9 @@ app.post('/preview', (req, res) => {
             res.end(JSON.stringify({
                 newHTML: page
             }));
+        })
+        .catch(error => {
+            console.log(error.message);
         });
 });
 app.get('/profile/:id', (req, res) => {
@@ -84,6 +89,21 @@ app.get('/profile/:id', (req, res) => {
             console.log('error in promise handling');
             console.log(error);
         });
+});
+app.get('/blocking', (req, res) => {
+    console.log('BLOCKED!');
+
+    for (i = 0; i < 4e9; i++) {
+        if (i % 1000000000 === 0) {
+            console.log(i);
+        }
+    }
+    console.log('ACTIVE!');
+    res.writeHead(302, {
+        Location: '/'
+    });
+    res.end();
+
 });
 
 app.post('/modify', (req, res) => {
@@ -107,9 +127,9 @@ app.post('/modify', (req, res) => {
 
 });
 
-
 app.listen(port, () => console.log(`App listening on port ${port}!`))
 
+//////////////////////////
 
 function generatePersonalPage(data) {
 
@@ -126,7 +146,7 @@ function generatePersonalPage(data) {
         <body>`;
         data.divs.forEach((e) => {
             if (e.type === 'image') {
-                if(e.url){
+                if (e.url) {
                     output += `<img src=${e.url} alt="Your image" class=${e.classN}>`;
                 }
             } else if (e.type === 'text') {
