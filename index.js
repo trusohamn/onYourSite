@@ -1,5 +1,4 @@
 const fs = require('fs');
-const http = require('http');
 const qs = require('querystring');
 const path = require('path');
 
