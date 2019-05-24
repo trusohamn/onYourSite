@@ -36,23 +36,33 @@
         <br>
         <span class="imageUrlTxt">Image url</span>
         <input id="imageUrlField" name="image_3" type="text"><br>
-        <span class="imageClass">Image class</span>
-        <input id="imageClassField" name="class_3" type="text"><br>
+        <!-- <span class="imageClass">Image class</span> -->
+        <!-- <input id="imageClassField" name="class_3" type="text"><br> -->
+        <select id="imageClassField" name="class_3"><br>
+          <option value="red.css">Round</option>
+          <option value="blue.css">Square</option>
+          <option value="black.css">Rectangular</option>
+        </select><br>
+
+
+
         <span class="styleTxt">Style</span>
         <select id="selectField3" name="styles">
           <option value="red.css">Red</option>
           <option value="blue.css">Blue</option>
           <option value="black.css">Black</option>
         </select><br>
-        <button id="addTextField">Add text</button>
+        <!-- <button id="addTextField">Add text</button> -->
         <input id="submit" type="submit" value="Generate profile"></input>
         <input id="preview" method="POST" value="Preview" target="iframe_a.srcdoc"></input>
-        <input id="modify" type="submit" value="Modify profile"></input>
+        <!-- <input id="modify" type="submit" value="Modify profile"></input> -->
     </form>
+
   </div>
   </div>
-  <iframe src="javascript:void(0);" name="iframe_a" srcdoc="" id="show-preview">
-  </iframe>
+
+    <iframe src="javascript:void(0);" name="iframe_a" srcdoc="" id="show-preview" class ="myIframe"></iframe>
+
 
   <script src='client.js'></script>
 </body>
