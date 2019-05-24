@@ -1,26 +1,29 @@
 body {
-    background : rgb(197, 42, 68);
-    color :white;
-    text-align: center;
+  background: rgb(197, 42, 68);
+  color: white;
+  text-align: center;
 }
 
 .class1 {
-   font-size : 2 rem; 
+  font-size: 2rem;
 }
 
 .class2 {
-    font-size : 0.5 rem; 
-    color: yellowgreen;
- }
-
- .class3 {
-    font-size : 1 rem; 
- }
- .header {
-   font-size : 3rem;
-   color : gray;
+  font-size: 4rem;
+  color: yellowgreen;
 }
- img {
-    border-radius : 10%;
-    width: 40%;
- }
+
+.class3 {
+  font-size: 2rem;
+  font-style: italic;
+}
+
+.header {
+  font-size: 3.5rem;
+  color: gray;
+}
+
+img {
+  border-radius: 10%;
+  width: 40%;
+}
