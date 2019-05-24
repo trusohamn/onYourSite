@@ -11,7 +11,7 @@ body {
   text-align: center;
   margin-top: 10%;
   background-image: url('/material/bg.jpg');
-  background-repeat: no-repeat;
+  background-repeat: repeat;
   background-size: 100% 100%;
   font-family: var(--main-font);
   font-size: 20px;
@@ -21,14 +21,14 @@ body {
 #formDiv {
   width: 40%;
   height: 40%;
-  margin: auto auto;
-
+  float: left;
+  margin-left: 200px;
 }
 
 input {
   margin-top: 5px;
   margin-bottom: 5px;
-  background-color: black;
+  background-color: #4F5D75;
   color: white;
   padding: 5px;
   font-size: 20px;
@@ -37,13 +37,23 @@ input {
   text-align: center;
 }
 
+input:focus {
+  color: black;
+  background-color: #FBFFF1
+}
+
 select {
-  padding: 6px 0px 6px 15px;
-  background-color: black;
+  padding: 3px 0px 3px 18px;
+  background-color: #4F5D75;
   color: white;
   font-size: 15px;
   font-family: var(--main-font);
   text-align: center;
+}
+
+select:focus {
+  color: black;
+  background-color: #FBFFF1
 }
 
 #submit {
@@ -92,8 +102,8 @@ select {
 
 .container {
   display: grid;
-  grid-template-columns: 1fr 3fr 3fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 3fr 3fr 100px;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-column-gap: 15px;
   grid-row-gap: 15px;
   justify-items: stretch;
@@ -123,6 +133,11 @@ select {
 #selectField2 {
   grid-column: 4/5;
   grid-row: 3/4;
+}
+
+#imageClassField {
+  grid-column: 4/5;
+  grid-row: 4/5;
 }
 
 #imageUrlField {
@@ -172,11 +187,55 @@ select {
   margin-top: 15px;
 }
 
+iframe {
+  height: 180px;
+  width: 300px;
+  margin-top: 80px;
+  margin-left: 60px;
+  float: left;
+  background-color: #C9EF83;
+}
+
+
 @media(max-width: 1000px) {
   #formDiv {
     width: 60%;
     height: 60%;
     margin: auto auto;
+  }
+  body{
+    top:5%;
+  }
+
+  input {
+    font-size: 12px;
+  }
+
+  #show-preview {
+    height: 150px;
+    width: 300px;
+    margin-left: 100px;
+    margin-top: 30px;
+  }
+}
+
+@media(max-width: 900px) {
+  #formDiv {
+    width: 60%;
+    height: 60%;
+    margin: auto auto;
+  }
+  body {
+    top:5%;
+  }
+  input {
+    font-size: 12px;
+  }
+  #show-preview {
+    height: 150px;
+    width: 300px;
+    margin-left: 100px;
+    margin-top: 30px;
   }
 }
 
@@ -186,6 +245,26 @@ select {
     height: 70%;
     margin: auto auto;
   }
+
+  body{
+    top:5%;
+  }
+
+
+  input {
+    font-size: 12px;
+  }
+
+  #show-preview {
+    height: 150px;
+    width: 200px;
+    resize: both;
+    float: bottom;
+    margin-left: 120px;
+    margin-top: 30px;
+    background-color: #C9EF83;
+  }
+
 }
 
 @media(max-width: 600px) {
@@ -193,6 +272,24 @@ select {
     width: 80%;
     height: 80%;
     margin: auto auto;
+  }
+
+  body {
+    top:5%;
+  }
+
+
+  input {
+    font-size: 12px;
+  }
+
+  #show-preview {
+    height: 100px;
+    width: 200px;
+    margin-left: 100px;
+    margin-top: 30px;
+    float: left;
+    background-color: #C9EF83;
   }
 }
 
@@ -202,9 +299,21 @@ select {
     height: 90%;
     margin: auto auto;
   }
-}
 
-iframe {
-  resize: both;
-  background-color: #C9EF83;
+  body{
+    top:5%;
+  }
+
+  input {
+    font-size: 12px;
+  }
+
+  #show-preview {
+    height: 120px;
+    width: 200px;
+    margin-left: 50px;
+    margin-top: 30px;
+    float: left;
+    background-color: #C9EF83;
+  }
 }
