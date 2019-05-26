@@ -21,7 +21,7 @@ function addDBPromise(entry) {
 function addMockPromise(key) {
     console.log('calling addMock');
     return new Promise((resolve, reject) => {
-        resolve('/profile/1'); 
+        resolve('/profile/1');
     })
 }
 

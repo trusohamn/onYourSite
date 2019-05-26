@@ -200,18 +200,15 @@ iframe {
   background-color: #C9EF83;
 }
 
-
 @media(max-width: 1000px) {
   #formDiv {
     width: 60%;
     height: 60%;
     margin: auto auto;
   }
-
   input {
     font-size: 12px;
   }
-
   #show-preview {
     height: 150px;
     width: 300px;
@@ -226,15 +223,12 @@ iframe {
     height: 60%;
     margin: auto auto;
   }
-
   body {
     top: 5%;
   }
-
   input {
     font-size: 12px;
   }
-
   #show-preview {
     height: 150px;
     width: 300px;
@@ -249,16 +243,12 @@ iframe {
     height: 70%;
     margin: auto auto;
   }
-
   body {
     top: 5%;
   }
-
-
   input {
     font-size: 12px;
   }
-
   #show-preview {
     height: 150px;
     width: 200px;
@@ -268,7 +258,6 @@ iframe {
     margin-top: 30px;
     background-color: #C9EF83;
   }
-
 }
 
 @media(max-width: 600px) {
@@ -277,16 +266,12 @@ iframe {
     height: 80%;
     margin: auto auto;
   }
-
   body {
     top: 5%;
   }
-
-
   input {
     font-size: 12px;
   }
-
   #show-preview {
     height: 100px;
     width: 200px;
@@ -303,11 +288,9 @@ iframe {
     height: 90%;
     margin: auto auto;
   }
-
   input {
     font-size: 12px;
   }
-
   #show-preview {
     height: 120px;
     width: 200px;

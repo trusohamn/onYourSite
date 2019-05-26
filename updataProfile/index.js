@@ -8,7 +8,7 @@ function updatePromise(entry) {
         MongoClient.connect(url, (err, db) => {
             if (err) reject(err);
             var dbo = db.db("mydb");
-            dbo.collection("test").replaceOne({_id: entry._id}, entry, (err, res) => {
+            dbo.collection("test").replaceOne({ _id: entry._id }, entry, (err, res) => {
                 if (err) reject(err);
                 console.log("1 document updated");
                 db.close();
@@ -21,7 +21,7 @@ function updatePromise(entry) {
 function updateMockPromise(key) {
     console.log('calling updateMock');
     return new Promise((resolve, reject) => {
-        resolve('/profile/1'); 
+        resolve('/profile/1');
     })
 }
 
