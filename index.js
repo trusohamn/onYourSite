@@ -90,21 +90,21 @@ app.get('/profile/:id', (req, res) => {
             console.log(error);
         });
 });
-app.get('/blocking', (req, res) => {
-    console.log('BLOCKED!');
+// app.get('/blocking', (req, res) => {
+//     console.log('BLOCKED!');
 
-    for (i = 0; i < 4e9; i++) {
-        if (i % 1000000000 === 0) {
-            console.log(i);
-        }
-    }
-    console.log('ACTIVE!');
-    res.writeHead(302, {
-        Location: '/'
-    });
-    res.end();
+//     for (i = 0; i < 4e9; i++) {
+//         if (i % 1000000000 === 0) {
+//             console.log(i);
+//         }
+//     }
+//     console.log('ACTIVE!');
+//     res.writeHead(302, {
+//         Location: '/'
+//     });
+//     res.end();
 
-});
+// });
 
 app.post('/modify', (req, res) => {
 
