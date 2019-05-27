@@ -35,10 +35,7 @@ describe('generate API', () => {
       .post('/generate')
       .send(formData)
       .expect(302)
-      .end(err => {
-        if (err) return done(err);
-        done();
-      });
+      .end(done);
 
     console.log('**********', location);
 
