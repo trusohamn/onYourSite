@@ -2,13 +2,13 @@
 const request = require('supertest');
 
 const { createServer } = require('http');
-const { app } = require('../index.js');
+const { router } = require('../router.js');
 
 describe('generate API', () => {
   let server;
 
   before(() => {
-    server = createServer(app);
+    server = createServer(router);
     server.listen(0);
   });
 
@@ -17,7 +17,7 @@ describe('generate API', () => {
   });
 
   const formData = {
-    _id: 1,
+    _id: 123345,
     styles: 'red.css',
     text_1: 'first',
     class_1: 'header',
@@ -26,21 +26,15 @@ describe('generate API', () => {
     text_3: 'third',
     class_3: 'bold',
     image_4:
-      'https://cdn.pixabay.com/photo/2016/06/18/17/42/image-1465348_960_720.jpg',
+      'urltoimage',
     class_4: 'top'
   };
 
   it('generate a new profile', async done => {
-    const resp = await request(server)
+    await request(server)
       .post('/generate')
-      .send(formData)
       .expect(302)
-      .end(done);
-
-    console.log('**********', location);
-
-    const {
-      headers: { location }
-    } = resp;
+      .expect('Location', '/profile/' + formData._id)
+      .send(formData, done());
   });
 });

@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-const fs = require('fs');
 const qs = require('querystring');
+const path = require('path');
 
 const profileData = require('./profileData');
 const newProfile = require('./newProfile');
@@ -11,16 +11,7 @@ const updateProfile = require('./updataProfile');
 const { generateData, generatePersonalPage } = require('./dataProcessing');
 router.get('/', (req, res) => {
   console.log('home');
-  fs.readFile('./static/index.html', (err, data) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.writeHead(200, {
-        'Content-Type': 'text/html'
-      });
-      res.end(data);
-    }
-  });
+  res.sendFile(path.join(__dirname+'/static/index.html'));
 });
 router.post('/generate', (req, res) => {
   console.log('generating entry');
@@ -39,9 +30,11 @@ router.post('/generate', (req, res) => {
       }
     })
     .catch(error => {
+      res.status(403);
       res.end('Profile already exists!! \n' + error.message);
     });
-});router.post('/preview', (req, res) => {
+});
+router.post('/preview', (req, res) => {
   console.log('preview personal page');
   readBodyPromise(req)
     .then(body => {
@@ -57,9 +50,10 @@ router.post('/generate', (req, res) => {
       );
     })
     .catch(error => {
-      console.log(error.message);
+      res.status(404).end(error.message);
     });
-});router.get('/profile/:id', (req, res) => {
+});
+router.get('/profile/:id', (req, res) => {
   console.log('profile');
   const key = req.params.id;
   profileData
@@ -72,8 +66,7 @@ router.post('/generate', (req, res) => {
       res.end(page);
     })
     .catch(error => {
-      console.log('error in promise handling');
-      console.log(error);
+      res.status(404).end(error.message);
     });
 });
 router.post('/modify', (req, res) => {
@@ -91,6 +84,9 @@ router.post('/modify', (req, res) => {
         });
         res.end();
       }
+    })
+    .catch(error => {
+      res.status(404).end(error.message);
     });
 });
 
