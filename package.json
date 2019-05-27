@@ -7,7 +7,8 @@
     "start": "nodemon index.js",
     "lint": "eslint *.js",
     "pretest": "npm run lint",
-    "test": "mocha *.spec.js"
+    "test": "mocha *.spec.js",
+    "e2e": "mocha e2e/*.test.js"
   },
   "engines": {
     "node": "10.15.3"
@@ -16,9 +17,13 @@
   "license": "ISC",
   "devDependencies": {
     "eslint": "^5.16.0",
+    "eslint-config-prettier": "^4.3.0",
+    "eslint-plugin-prettier": "^3.1.0",
     "html-minifier": "^4.0.0",
     "mocha": "^6.1.4",
-    "nodemon": "^1.19.0"
+    "nodemon": "^1.19.0",
+    "prettier": "^1.17.1",
+    "supertest": "^4.0.2"
   },
   "dependencies": {
     "express": "^4.17.0",
