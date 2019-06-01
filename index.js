@@ -4,27 +4,26 @@ const port = process.env.PORT || 8000;
 
 const express = require('express');
 const app = express();
-
-const mongoose = require('mongoose');
 const session = require('express-session');
-const MongoStore = require('connect-mongo')(session);
+const MongoDBStore = require('connect-mongodb-session')(session);
 
-mongoose.connect('mongodb://localhost:27017/users');
-const db = mongoose.connection;
-// mongo error
-db.on('error', console.error.bind(console, 'connection error:'));
+const store = new MongoDBStore({
+  uri: process.env.MONGOLAB_URI,
+  collection: 'mySessions'
+});
+store.on('error', function(error) {
+  console.log(error);
+});
 
-// use sessions for tracking logins
-app.use(
-  session({
-    secret: 'i dont have any secrets for you',
-    resave: true,
-    saveUninitialized: false,
-    store: new MongoStore({
-      mongooseConnection: db
-    })
-  })
-);
+app.use(session({
+  secret: 'This is a secret',
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
+  },
+  store: store,
+  resave: true,
+  saveUninitialized: true
+}));
 
 // make user ID available in templates
 app.use(function(req, res, next) {
