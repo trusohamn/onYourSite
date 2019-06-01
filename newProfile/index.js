@@ -4,15 +4,19 @@ const add =
 const MongoClient = require('mongodb').MongoClient;
 const url = process.env.MONGOLAB_URI;
 
-function addDBPromise(entry) {
+function addDBPromise(entry, currentUser) {
   return new Promise((resolve, reject) => {
     MongoClient.connect(url, (err, db) => {
       if (err) return reject(err);
       var dbo = db.db('mydb');
       dbo.collection('test').insertOne(entry, (err) => {
-        if (err) return reject(err);
-        console.log('1 document inserted');
         db.close();
+        if (err) return reject(err);
+        console.log('1 webpage inserted');
+        if(currentUser){
+          const {addPage} = require('../user');
+          addPage(currentUser, entry._id);
+        }
         return resolve('/profiles/' + entry._id);
       });
     });

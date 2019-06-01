@@ -26,7 +26,7 @@ app.use(session({
 }));
 
 // make user ID available in templates
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   res.locals.currentUser = req.session.userId;
   next();
 });

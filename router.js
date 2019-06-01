@@ -26,7 +26,7 @@ router.post('/generate', (req, res) => {
   console.log('generating entry');
   const processedData = generateData(req.body);
   newProfile
-    .add(processedData)
+    .add(processedData, req.session.userId)
     .then(answer => {
       //redirect
       if (answer) {
