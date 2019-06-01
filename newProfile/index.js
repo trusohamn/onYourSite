@@ -13,7 +13,7 @@ function addDBPromise(entry) {
         if (err) return reject(err);
         console.log('1 document inserted');
         db.close();
-        return resolve('/profile/' + entry._id);
+        return resolve('/profiles/' + entry._id);
       });
     });
   });
@@ -22,7 +22,7 @@ function addDBPromise(entry) {
 function addMockPromise() {
   console.log('calling addMock');
   return new Promise((resolve) => {
-    resolve('/profile/1');
+    resolve('/profiles/1');
   });
 }
 

@@ -1,0 +1,50 @@
+extends layout
+block content
+    #formDiv
+        form#mainForm(action='/generate', method='POST')
+            .container
+                span.pathText Path
+                input#pathInput(name='_id', type='text', required='')
+                br
+                span.TxtField_1 First Line
+                input#textField1(name='text_1', type='text')
+                select#selectField1(name='class_1')
+                    option(value='class1') Normal
+                    option(value='class2') Large
+                    option(value='class3') Italic
+                    option(value='header') Gray
+                br
+                span.textField2 Second Line
+                input#textField2(name='text_2', type='text')
+                select#selectField2(name='class_2')
+                    option(value='class1') Normal
+                    option(value='class2') Large
+                    option(value='class3') Italic
+                    option(value='header') Gray
+                br
+                span.imageUrlTxt Image url
+                input#imageUrlField(name='image_3', type='text')
+                br
+                // <span class="imageClass">Image class</span>
+                // <input id="imageClassField" name="class_3" type="text"><br>
+                select#imageClassField(name='class_3')
+                    option(value='red.css') Round
+                    option(value='blue.css') Square
+                    option(value='black.css') Rectangular
+                br
+                span.styleTxt Style
+                select#selectField3(name='styles')
+                    option(value='red.css') Red
+                    option(value='blue.css') Blue
+                    option(value='black.css') Black
+                br
+                // <button id="addTextField">Add text</button>
+                input#submit(type='submit', value='Generate profile')
+                input#preview(method='POST', value='Preview', target='iframe_a.srcdoc')
+                // <input id="modify" type="submit" value="Modify profile"></input>
+    form#flickrForm.mainForm
+        input#flikrInput(type='text', name='name', placeholder='Search for image')
+        button(type='submit', name='submit', value='submit') Random!
+    iframe#show-preview(src='javascript:void(0);', name='iframe_a', srcdoc='')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js')
+    script(src='client.js')
