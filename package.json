@@ -17,16 +17,17 @@
   "license": "ISC",
   "devDependencies": {
     "eslint": "^5.16.0",
-    "eslint-config-prettier": "^4.3.0",
-    "eslint-plugin-prettier": "^3.1.0",
     "html-minifier": "^4.0.0",
     "mocha": "^6.1.4",
     "nodemon": "^1.19.0",
-    "prettier": "^1.17.1",
     "supertest": "^4.0.2"
   },
   "dependencies": {
+    "bcrypt": "^3.0.6",
+    "connect-mongo": "^2.0.3",
     "express": "^4.17.0",
-    "mongodb": "^3.2.5"
+    "express-session": "^1.16.1",
+    "mongodb": "^3.2.5",
+    "pug": "^2.0.3"
   }
 }

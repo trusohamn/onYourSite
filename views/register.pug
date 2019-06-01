@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  .main.container.row
+      h1.display-4.m-b-2 Sign Up
+      form(method='POST' action='/register')
+        div.form-group
+          label(for='username') Username:
+          input#name.form-control(type='text', placeholder='username' name='username')
+        div.form-group
+          label(for='pw') Password:
+          input#pw.form-control(type='password' name='password')
+        div.form-group
+          label(for='pw2') Confirm Password:
+          input#pw2.form-control(type='password' name='confirmPassword')
+        button.btn.btn-primary(type='submit') Sign up
