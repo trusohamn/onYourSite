@@ -40,6 +40,13 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+app.use(express.static(path.join(__dirname, 'static')));
+app.use(express.static(path.join(__dirname, 'static/styles')));
+app.use(express.static(path.join(__dirname, 'static/material')));
+app.use('/profiles', express.static(path.join(__dirname, 'static')));
+app.use('/profiles', express.static(path.join(__dirname, 'static/styles')));
+app.use('/profiles', express.static(path.join(__dirname, 'static/material')));
+
 
 const { router } = require('./router');
 const { loginRouter } = require('./login');
@@ -47,13 +54,6 @@ app.use('/', router);
 app.use('/', loginRouter);
 
 
-
-app.use(express.static(path.join(__dirname, 'static')));
-app.use(express.static(path.join(__dirname, 'static/styles')));
-app.use(express.static(path.join(__dirname, 'static/material')));
-app.use('/profiles', express.static(path.join(__dirname, 'static')));
-app.use('/profiles', express.static(path.join(__dirname, 'static/styles')));
-app.use('/profiles', express.static(path.join(__dirname, 'static/material')));
 
 
 

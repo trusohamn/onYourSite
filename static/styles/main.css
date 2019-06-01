@@ -311,13 +311,13 @@ iframe {
 	margin-bottom: 2.5rem;
 }
 .main {
-	color: #fff;
+	color: rgb(44, 55, 155);
 	min-height: calc(100vh - 34px);
 }
 .foot {
 	font-size: .85rem;
 	padding: .5rem 0;
-	color: rgba(255,255,255, .6);
+	color: rgba(100, 87, 87, 0.6);
 }
 
 /* Modifier Styles */
