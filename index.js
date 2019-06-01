@@ -31,10 +31,9 @@ app.use(function(req, res, next) {
   next();
 });
 
-// view engine setup
 app.set('view engine', 'pug');
 app.set('views', __dirname + '/views');
-// parse incoming requests
+
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -53,14 +52,15 @@ app.use('/', router);
 app.use('/', loginRouter);
 
 
-
-
-
-app.use(function(req, res, next) {
-  var err = new Error('File Not Found');
+app.use((req, res, next) => {
+  const err = new Error('File Not Found');
   err.status = 404;
   next(err);
 });
 
+app.use(function (err, req, res, next) {
+  console.error(err.stack);
+  res.status(500).send('Something broke! ' + err.message);
+});
 
 app.listen(port, () => console.log(`App listening on port ${port}!`));

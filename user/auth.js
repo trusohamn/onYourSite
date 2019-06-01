@@ -14,8 +14,8 @@ function authPromise(username, password) {
         .collection('user')
         .find({ _id: username })
         .toArray(function(err, result) {
-          if (err) return reject(err);
           db.close();
+          if (err || !result[0]) return reject(err);
           console.log(result[0].password, password);
           bcrypt.compare(password, result[0].password, (error, auth) => {
             if (auth === true) {
