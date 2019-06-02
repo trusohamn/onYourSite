@@ -1,8 +1,9 @@
 const add =
   process.env.NODE_ENV === 'production' ? addDBPromise : addMockPromise;
 
+const config = require('../config');
 const MongoClient = require('mongodb').MongoClient;
-const url = process.env.MONGOLAB_URI;
+const url = config.db();
 
 function addDBPromise(entry, currentUser) {
   return new Promise((resolve, reject) => {

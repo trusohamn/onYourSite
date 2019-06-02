@@ -3,7 +3,8 @@ const auth = process.env.NODE_ENV === 'production' ? authPromise : authMockPromi
 const MongoClient = require('mongodb').MongoClient;
 var bcrypt = require('bcrypt');
 
-const url = process.env.MONGOLAB_URI;
+const config = require('../config');
+const url = config.db();
 
 function authPromise(username, password) {
   return new Promise((resolve, reject) => {
@@ -16,7 +17,6 @@ function authPromise(username, password) {
         .toArray(function(err, result) {
           db.close();
           if (err || !result[0]) return reject(err);
-          console.log(result[0].password, password);
           bcrypt.compare(password, result[0].password, (error, auth) => {
             if (auth === true) {
               return resolve(result[0]);

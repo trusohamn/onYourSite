@@ -1,14 +1,14 @@
-const path = require('path');
-
 const port = process.env.PORT || 8000;
 
+const config = require('./config');
+const path = require('path');
 const express = require('express');
 const app = express();
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 
 const store = new MongoDBStore({
-  uri: process.env.MONGOLAB_URI,
+  uri: config.db(),
   collection: 'mySessions'
 });
 store.on('error', function(error) {
@@ -18,7 +18,7 @@ store.on('error', function(error) {
 app.use(session({
   secret: 'This is a secret',
   cookie: {
-    maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
+    maxAge: 1000 * 60 * 60 * 24  // 1 day
   },
   store: store,
   resave: true,
@@ -58,7 +58,7 @@ app.use((req, res, next) => {
   next(err);
 });
 
-app.use(function (err, req, res, next) {
+app.use(function (err, req, res) {
   console.error(err.stack);
   res.status(500).send('Something broke! ' + err.message);
 });

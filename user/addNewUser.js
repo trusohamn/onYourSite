@@ -4,7 +4,8 @@ const add =
 const MongoClient = require('mongodb').MongoClient;
 var bcrypt = require('bcrypt');
 
-const url = process.env.MONGOLAB_URI;
+const config = require('../config');
+const url = config.db();
 
 function addDBPromise(entry) {
   return new Promise((resolve, reject) => {
@@ -12,19 +13,22 @@ function addDBPromise(entry) {
       if (err) {
         return reject(err);
       }
+      console.log(hash);
       entry.password = hash;
-    });
 
-    entry._id = entry.username;
-
-    MongoClient.connect(url, (err, db) => {
-      if (err) return reject(err);
-      var dbo = db.db('mydb');
-      dbo.collection('user').insertOne(entry, (err) => {
+      entry._id = entry.username;
+  
+      MongoClient.connect(url, (err, db) => {
         if (err) return reject(err);
-        console.log('1 user inserted');
-        db.close();
-        return resolve(entry);
+        var dbo = db.db('mydb');
+        dbo
+          .collection('user')
+          .insertOne(entry, (err) => {
+            if (err) return reject(err);
+            console.log('1 user inserted');
+            db.close();
+            return resolve(entry);
+          });
       });
     });
   });

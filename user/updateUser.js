@@ -1,15 +1,13 @@
 const {get} = require('./getUser');
 
 const MongoClient = require('mongodb').MongoClient;
-const url = process.env.MONGOLAB_URI;
+const config = require('../config');
+const url = config.db();
 
 function addPage(username, webpage) {
   console.log(username, webpage);
   return new Promise((resolve, reject) => {
     get(username).then(user => {
-      console.log('////////');
-      console.log(user);
-      console.log('////////');
       MongoClient.connect(url, (err, db) => {
         if (err) return reject(err);
         var dbo = db.db('mydb');

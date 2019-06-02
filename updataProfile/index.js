@@ -1,7 +1,9 @@
+const config = require('../config');
+
 const update = process.env.NODE_ENV === 'production' ? updatePromise : updateMockPromise;
 
 const MongoClient = require('mongodb').MongoClient;
-const url = process.env.MONGOLAB_URI;
+const url = config.db();
 
 function updatePromise(entry) {
   return new Promise((resolve, reject) => {

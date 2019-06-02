@@ -3,8 +3,10 @@ const getData =
     ? findEntryPromise
     : findEntryMockPromise;
 
+const config = require('../config');
+
 const MongoClient = require('mongodb').MongoClient;
-const url = process.env.MONGOLAB_URI;
+const url = config.db();
 
 function findEntryPromise(key) {
   console.log('promise looking for:', key);
