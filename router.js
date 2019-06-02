@@ -3,9 +3,7 @@ const router = express.Router();
 
 const qs = require('querystring');
 
-const profileData = require('./profileData');
-const newProfile = require('./newProfile');
-const updateProfile = require('./updataProfile');
+const webpages = require('./webpages');
 
 const { generateData, generatePersonalPage } = require('./dataProcessing');
 
@@ -25,7 +23,7 @@ router.get('/create', function(req, res) {
 router.post('/generate', (req, res) => {
   console.log('generating entry');
   const processedData = generateData(req.body);
-  newProfile
+  webpages
     .add(processedData, req.session.userId)
     .then(answer => {
       //redirect
@@ -41,6 +39,7 @@ router.post('/generate', (req, res) => {
       res.end('Profile already exists!! \n' + error.message);
     });
 });
+
 router.post('/preview', (req, res) => {
   console.log('preview personal page');
   const processedData = generateData(req.body);
@@ -56,11 +55,12 @@ router.post('/preview', (req, res) => {
     })
   );
 });
+
 router.get('/profiles/:id', (req, res) => {
   console.log('profiles');
   const key = req.params.id;
-  profileData
-    .getData(key)
+  webpages
+    .get(key)
     .then(content => {
       res.writeHead(200, {
         'Content-Type': 'text/html'
@@ -72,10 +72,11 @@ router.get('/profiles/:id', (req, res) => {
       res.status(404).end(error.message);
     });
 });
+
 router.post('/modify', (req, res) => {
   console.log('modify');
   const processedData = generateData(qs.parse(req.body));
-  updateProfile
+  webpages
     .update(processedData)
     .then(answer => {
       //redirect

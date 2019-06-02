@@ -10,7 +10,7 @@ function updatePromise(entry) {
     MongoClient.connect(url, (err, db) => {
       if (err) reject(err);
       var dbo = db.db('mydb');
-      dbo.collection('test').replaceOne({ _id: entry._id }, entry, (err, res) => {
+      dbo.collection('test').replaceOne({ _id: entry._id }, entry, (err) => {
         if (err) reject(err);
         console.log('1 document updated');
         db.close();
