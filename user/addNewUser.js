@@ -20,7 +20,7 @@ function addDBPromise(entry) {
   
       MongoClient.connect(url, (err, db) => {
         if (err) return reject(err);
-        var dbo = db.db('mydb');
+        var dbo = db.db(config.dbName);
         dbo
           .collection('user')
           .insertOne(entry, (err) => {

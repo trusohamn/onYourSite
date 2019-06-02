@@ -9,7 +9,8 @@ const MongoDBStore = require('connect-mongodb-session')(session);
 
 const store = new MongoDBStore({
   uri: config.db(),
-  collection: 'mySessions'
+  databaseName: config.dbName,
+  collection: 'session',
 });
 store.on('error', function(error) {
   console.log(error);

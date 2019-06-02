@@ -13,7 +13,7 @@ function findEntryPromise(key) {
   return new Promise(function(resolve, reject) {
     MongoClient.connect(url, function(err, db) {
       if (err) return reject(err);
-      var dbo = db.db('mydb');
+      var dbo = db.db(config.dbName);
       dbo
         .collection('test')
         .find({ _id: key })

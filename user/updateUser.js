@@ -10,10 +10,10 @@ function addPage(username, webpage) {
     get(username).then(user => {
       MongoClient.connect(url, (err, db) => {
         if (err) return reject(err);
-        var dbo = db.db('mydb');
+        var dbo = db.db(config.dbName);
         dbo.collection('user').updateOne(
           { '_id': user._id },
-          { $push: { 'webpages': webpage } }, (err, res) => {
+          { $push: { 'webpages': webpage } }, (err) => {
             db.close();
             if (err) return reject(err);
             console.log('1 webpage added to user');

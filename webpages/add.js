@@ -9,7 +9,7 @@ function addDBPromise(entry, currentUser) {
   return new Promise((resolve, reject) => {
     MongoClient.connect(url, (err, db) => {
       if (err) return reject(err);
-      var dbo = db.db('mydb');
+      var dbo = db.db(config.dbName);
       dbo.collection('test').insertOne(entry, (err) => {
         db.close();
         if (err) return reject(err);

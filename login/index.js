@@ -3,11 +3,10 @@ var router = express.Router();
 var user = require('../user');
 var mid = require('./middleware');
 
-
-
 router.get('/profile', mid.requiresLogin, function(req, res, next) {
   user.get(req.session.userId)
     .then( data => {
+      console.log(data);
       return res.render('profile', {
         title: 'Profile',
         username: data.username,
@@ -16,7 +15,6 @@ router.get('/profile', mid.requiresLogin, function(req, res, next) {
     })
     .catch (err => next(err));
 });
-
 
 router.get('/logout', function(req, res, next) {
   if (req.session) {

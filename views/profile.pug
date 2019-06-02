@@ -4,6 +4,14 @@ block content
   .main.container.clearfix
     .row
       .col-md-8.col-md-offset-2
-        h1.display-4
-          | #{username}
+        span #{username} 
+        ul
+          each webpage in webpages
+            li 
+              a(href='/profiles/' + webpage) #{webpage}
+          else
+            li You haven't created any webpages yet
+
+          
+
        

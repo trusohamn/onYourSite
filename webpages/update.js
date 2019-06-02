@@ -9,7 +9,7 @@ function updatePromise(entry) {
   return new Promise((resolve, reject) => {
     MongoClient.connect(url, (err, db) => {
       if (err) reject(err);
-      var dbo = db.db('mydb');
+      var dbo = db.db(config.dbName);
       dbo.collection('test').replaceOne({ _id: entry._id }, entry, (err) => {
         if (err) reject(err);
         console.log('1 document updated');

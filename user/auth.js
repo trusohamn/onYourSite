@@ -10,7 +10,7 @@ function authPromise(username, password) {
   return new Promise((resolve, reject) => {
     MongoClient.connect(url, function(err, db) {
       if (err) return reject(err);
-      var dbo = db.db('mydb');
+      var dbo = db.db(config.dbName);
       dbo
         .collection('user')
         .find({ _id: username })

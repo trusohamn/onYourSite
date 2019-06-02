@@ -12,14 +12,13 @@ function findEntryPromise(key) {
   return new Promise(function(resolve, reject) {
     MongoClient.connect(url, function(err, db) {
       if (err) return reject(err);
-      var dbo = db.db('mydb');
+      var dbo = db.db(config.dbName);
       dbo
         .collection('user')
         .find({ _id: key })
         .toArray(function(err, result) {
           if (err) return reject(err);
           db.close();
-          console.log(result[0]);
           return resolve(result[0]);
         });
     });
