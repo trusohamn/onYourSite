@@ -1,30 +1,11 @@
 const port = process.env.PORT || 8000;
 
-const config = require('./config');
 const path = require('path');
 const express = require('express');
 const app = express();
-const session = require('express-session');
-const MongoDBStore = require('connect-mongodb-session')(session);
 
-const store = new MongoDBStore({
-  uri: config.db(),
-  databaseName: config.dbName,
-  collection: 'session',
-});
-store.on('error', function(error) {
-  console.log(error);
-});
-
-app.use(session({
-  secret: 'This is a secret',
-  cookie: {
-    maxAge: 1000 * 60 * 60 * 24  // 1 day
-  },
-  store: store,
-  resave: true,
-  saveUninitialized: true
-}));
+const {session} = require('./session');
+app.use(session);
 
 // make user ID available in templates
 app.use((req, res, next) => {
