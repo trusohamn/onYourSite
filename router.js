@@ -92,4 +92,18 @@ router.post('/modify', (req, res) => {
     });
 });
 
+router.get('/modify/:id', (req, res) => {
+  //get the data about the website id
+  const key = req.params.id;
+  webpages
+    .get(key)
+    .then(content => {
+
+    });
+  //fill the create form with those values
+
+  //send the modify page
+  
+});
+
 module.exports.router = router;

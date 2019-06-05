@@ -13,8 +13,9 @@ app.use((req, res, next) => {
   next();
 });
 
-app.set('view engine', 'pug');
-app.set('views', __dirname + '/views');
+var exphbs  = require('express-handlebars');
+app.engine('handlebars', exphbs());
+app.set('view engine', 'handlebars');
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());

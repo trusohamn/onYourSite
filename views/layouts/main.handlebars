@@ -1,0 +1,40 @@
+<!DOCTYPE html(lang='en' )>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <title>On your site | [object HTMLInputElement]</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css"
+    integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles/main.css" />
+
+<body>
+  <nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
+    <button class="navbar-toggler hidden-md-up pull-xs-right" type="button" data-toggle="collapse"
+      data-target="#navbar">&#x2630;</button>
+    <div class="navbar-nav collapse navbar-toggleable-sm" id="navbar">
+      <div class="container"><a class="navbar-brand" href="/"><i class="icn-logo material-icons">on_your_site</i></a>
+        <div class="nav-items clearfix">
+          <a class="nav-item nav-link" href="/create">Create</a>
+          {{#if currentUser}}
+          <a class="nav-item nav-link" href="/profile">My Profile</a>
+          <a class="btn btn-light pull-md-right" href="/logout">Log out</a>
+          {{else}}
+          <a class="nav-item nav-link" href="/register">Sign Up</a>
+          <a class="btn btn-info pull-md-right" href="/login">Login</a>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  {{{body}}}
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js"
+    integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7"
+    crossorigin="anonymous"></script>
+</body>
+</head>

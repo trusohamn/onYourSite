@@ -1,0 +1,13 @@
+<div class="main container clearfix">
+
+  <span>Welcome {{{username}}}</span>
+  {{#if webpages}}
+  <ul>
+    {{#each webpages}}
+    <li> <a href="/profiles/{{this}}">{{this}}</a></li>
+    {{/each}}
+  </ul>
+  {{else}}
+  <span>ou haven't created any webpages yet</span>
+  {{/if}}
+</div>
