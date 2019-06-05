@@ -2,7 +2,7 @@
   <form id="mainForm" action="/generate" method="POST">
     <div class="container"><span class="pathText">Path</span>
       <input id="pathInput" name="_id" type="text" required=""/><br/>
-      <ul>
+      <ul id="inputList">
         <li><span class="TxtField_1">Text</span>
           <input id="textField1" name="text_1" type="text"/>
           <select id="selectField1" name="class_1">
@@ -29,7 +29,7 @@
             <option value="black.css">Rectangular</option>
           </select>
         </li>
-        <button id="addNew">Add text</button>
+        <button id="addNew" value="3">Add text</button>
       </ul><span class="styleTxt">Style</span>
       <select id="selectField3" name="styles">
         <option value="red.css">Red</option>

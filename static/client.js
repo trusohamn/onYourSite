@@ -52,7 +52,19 @@ $('#flickrForm').submit(e => {
 document.getElementById('addNew').addEventListener('click', e => {
   e.preventDefault();
   const li = document.createElement('li');
-  
+  const next_id = document.getElementById('addNew').value++;
+  li.innerHTML = `<span class="textField${next_id}">Text</span>
+  <input id="textField${next_id}" name="text_${next_id}" type="text"/>
+  <select id="selectField${next_id}" name="class_${next_id}">
+    <option value="class1">Normal</option>
+    <option value="class2">Large</option>
+    <option value="class3">Italic</option>
+    <option value="header">Gray</option>
+  </select>` ;
+  document.getElementById('inputList').appendChild(li);
+
+
+
   
 
 
