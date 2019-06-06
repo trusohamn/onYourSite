@@ -1,50 +1,71 @@
-<div id="formDiv">
-  <form id="mainForm" action="/generate" method="POST">
-    <div class="container"><span class="pathText">Path</span>
-      <input id="pathInput" name="_id" type="text" required=""/><br/>
-      <ul id="inputList">
-        <li><span class="TxtField_1">Text</span>
-          <input id="textField1" name="text_1" type="text"/>
-          <select id="selectField1" name="class_1">
-            <option value="class1">Normal</option>
-            <option value="class2">Large</option>
-            <option value="class3">Italic</option>
-            <option value="header">Gray</option>
-          </select>
-        </li>
-        <li><span class="textField2">Text</span>
-          <input id="textField2" name="text_2" type="text"/>
-          <select id="selectField2" name="class_2">
-            <option value="class1">Normal</option>
-            <option value="class2">Large</option>
-            <option value="class3">Italic</option>
-            <option value="header">Gray</option>
-          </select>
-        </li>
-        <li><span class="imageUrlTxt">Image </span>
-          <input id="imageUrlField" name="image_3" type="text"/>
-          <select id="imageClassField" name="class_3">
-            <option value="red.css">Round</option>
-            <option value="blue.css">Square</option>
-            <option value="black.css">Rectangular</option>
-          </select>
-        </li>
+<div class="container">
+  <div class="row">
+
+    <form id="mainForm" action="/generate" method="POST">
+      <div class="col-md-3">
+        <ul id="inputList" class="list-unstyled">
+          <li><span class="TxtField_1">Text</span>
+            <input id="textField1" name="text_1" type="text" />
+            <select id="selectField1" name="class_1">
+              <option value="class1">Normal</option>
+              <option value="class2">Large</option>
+              <option value="class3">Italic</option>
+              <option value="header">Gray</option>
+            </select>
+          </li>
+          <li><span class="textField2">Text</span>
+            <input id="textField2" name="text_2" type="text" />
+            <select id="selectField2" name="class_2">
+              <option value="class1">Normal</option>
+              <option value="class2">Large</option>
+              <option value="class3">Italic</option>
+              <option value="header">Gray</option>
+            </select>
+          </li>
+          <li><span class="imageUrlTxt">Image </span>
+            <input id="imageUrlField" name="image_3" type="text" />
+            <select id="imageClassField" name="class_3">
+              <option value="red.css">Round</option>
+              <option value="blue.css">Square</option>
+              <option value="black.css">Rectangular</option>
+            </select>
+          </li>
+        </ul>
+
         <button id="addNew" value="3">Add text</button>
-      </ul><span class="styleTxt">Style</span>
-      <select id="selectField3" name="styles">
-        <option value="red.css">Red</option>
-        <option value="blue.css">Blue</option>
-        <option value="black.css">Black</option>
-      </select><br/>
-      <input id="submit" type="submit" value="Generate profile"/>
-      <input id="preview" method="POST" value="Preview" target="iframe_a.srcdoc"/>
+        <br /> <br /> <br />
+      </div>
+      <div class="col-md-3">
+        <span class="pathText">Path</span>
+        <input id="pathInput" name="_id" type="text" required="" /><br />
+
+        <span class="styleTxt">Style</span>
+        <select id="selectField3" name="styles">
+          <option value="red.css">Red</option>
+          <option value="blue.css">Blue</option>
+          <option value="black.css">Black</option>
+        </select><br />
+
+        <input id="submit" type="submit" value="Generate profile" />
+        <input id="preview" method="POST" value="Preview" target="iframe_a.srcdoc" />
+      </div>
+
+
+    </form>
+    <div class="col-md-6">
+      <form class="mainForm" id="flickrForm">
+        <input id="flikrInput" type="text" name="name" placeholder="Search for image" />
+        <button type="submit" name="submit" value="submit">Random!</button>
+      </form>
+
+      <iframe id="show-preview" src="javascript:void(0);" name="iframe_a" srcdoc=""></iframe>
     </div>
-  </form>
+  </div>
+
+
 </div>
-<form class="mainForm" id="flickrForm">
-  <input id="flikrInput" type="text" name="name" placeholder="Search for image"/>
-  <button type="submit" name="submit" value="submit">Random!</button>
-</form>
-<iframe id="show-preview" src="javascript:void(0);" name="iframe_a" srcdoc=""></iframe>
+
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 <script src="client.js"></script>
