@@ -2,63 +2,58 @@
   <div class="row">
 
     <form id="mainForm" action="/generate" method="POST">
-      <div class="col-md-3">
+      <div class="col-md-5 container">
+        <div class="row">
+          <label for="pathInput" class="col-sm-2">Path</label>
+          <input id="pathInput" class="col-sm-5" name="_id" type="text" required="" /><br />
+        </div>
+
+        <div class="row">
+          <label for="chooseStyle" class="col-sm-2">Style</label>
+          <div class="col-sm-5">
+            <select id="chooseStyle" name="styles" class="form-control">
+              <option value="red.css">Red</option>
+              <option value="blue.css">Blue</option>
+              <option value="black.css">Black</option>
+            </select>
+          </div>
+        </div>
+
+        <button id="submit" class="btn btn-primary" type="submit" value="Generate profile">Generate</button>
+        <button id="preview" class="btn btn-primary" method="POST" value="Preview" target="iframe_a.srcdoc">Preview</button>
+
         <ul id="inputList" class="list-unstyled">
-          <li><span class="TxtField_1">Text</span>
-            <input id="textField1" name="text_1" type="text" />
-            <select id="selectField1" name="class_1">
+          <li>
+            <textarea name="text_1" class="form-control" placeholder="new text"></textarea>
+            <select name="class_1" class="form-control">
               <option value="class1">Normal</option>
               <option value="class2">Large</option>
               <option value="class3">Italic</option>
               <option value="header">Gray</option>
             </select>
           </li>
-          <li><span class="textField2">Text</span>
-            <input id="textField2" name="text_2" type="text" />
-            <select id="selectField2" name="class_2">
-              <option value="class1">Normal</option>
-              <option value="class2">Large</option>
-              <option value="class3">Italic</option>
-              <option value="header">Gray</option>
-            </select>
-          </li>
-          <li><span class="imageUrlTxt">Image </span>
-            <input id="imageUrlField" name="image_3" type="text" />
-            <select id="imageClassField" name="class_3">
-              <option value="red.css">Round</option>
-              <option value="blue.css">Square</option>
-              <option value="black.css">Rectangular</option>
+          <li><span>Image </span>
+            <input id="imageUrlField" name="image_2" type="text" />
+            <select name="class_2" class="form-control">
+              <option value="round">Round</option>
+              <option value="square">Square</option>
+              <option value="rectangular">Rectangular</option>
             </select>
           </li>
         </ul>
 
-        <button id="addNew" value="3">Add text</button>
-        <br /> <br /> <br />
+        <button id="addNew" class="btn btn-primary" value="2">Add text</button>
+        <br />
       </div>
-      <div class="col-md-3">
-        <span class="pathText">Path</span>
-        <input id="pathInput" name="_id" type="text" required="" /><br />
-
-        <span class="styleTxt">Style</span>
-        <select id="selectField3" name="styles">
-          <option value="red.css">Red</option>
-          <option value="blue.css">Blue</option>
-          <option value="black.css">Black</option>
-        </select><br />
-
-        <input id="submit" type="submit" value="Generate profile" />
-        <input id="preview" method="POST" value="Preview" target="iframe_a.srcdoc" />
-      </div>
-
-
     </form>
     <div class="col-md-6">
       <form class="mainForm" id="flickrForm">
         <input id="flikrInput" type="text" name="name" placeholder="Search for image" />
         <button type="submit" name="submit" value="submit">Random!</button>
       </form>
-
-      <iframe id="show-preview" src="javascript:void(0);" name="iframe_a" srcdoc=""></iframe>
+      <div class="embed-responsive embed-responsive-16by9">
+        <iframe id="show-preview" name="iframe_a" srcdoc="" class="embed-responsive-item" allowfullscreen></iframe>
+      </div>
     </div>
   </div>
 
