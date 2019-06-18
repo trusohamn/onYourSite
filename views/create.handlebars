@@ -4,13 +4,15 @@
     <form id="mainForm" action="/generate" method="POST">
       <div class="col-md-5 container">
         <div class="row">
-          <label for="pathInput" class="col-sm-2">Path</label>
-          <input id="pathInput" class="col-sm-5" name="_id" type="text" required="" /><br />
+          <label for="pathInput" class="col-md-2">Path</label>
+          <div class="col-md-5">
+          <input id="pathInput" class="form-control" name="_id" type="text" required="" /><br />
+          </div>
         </div>
 
         <div class="row">
-          <label for="chooseStyle" class="col-sm-2">Style</label>
-          <div class="col-sm-5">
+          <label for="chooseStyle" class="col-md-2">Style</label>
+          <div class="col-md-5">
             <select id="chooseStyle" name="styles" class="form-control">
               <option value="red.css">Red</option>
               <option value="blue.css">Blue</option>
@@ -18,9 +20,12 @@
             </select>
           </div>
         </div>
-
-        <button id="submit" class="btn btn-primary" type="submit" value="Generate profile">Generate</button>
-        <button id="preview" class="btn btn-primary" method="POST" value="Preview" target="iframe_a.srcdoc">Preview</button>
+        <div class="buttons">
+          <button id="submit" class="btn btn-primary" type="submit" value="Generate profile">Generate</button>
+          <button id="preview" class="btn btn-primary" method="POST" value="Preview"
+            target="iframe_a.srcdoc">Preview</button>
+        </div>
+    
 
         <ul id="inputList" class="list-unstyled">
           <li>
@@ -32,8 +37,8 @@
               <option value="header">Gray</option>
             </select>
           </li>
-          <li><span>Image </span>
-            <input id="imageUrlField" name="image_2" type="text" />
+          <li>
+            <input id="imageUrlField" class="form-control" placeholder="image url" name="image_2" type="text" />
             <select name="class_2" class="form-control">
               <option value="round">Round</option>
               <option value="square">Square</option>
@@ -48,8 +53,8 @@
     </form>
     <div class="col-md-6">
       <form class="mainForm" id="flickrForm">
-        <input id="flikrInput" type="text" name="name" placeholder="Search for image" />
-        <button type="submit" name="submit" value="submit">Random!</button>
+        <input id="flikrInput" class="form-control" type="text" name="name" placeholder="Search for image" />
+        <button class="btn btn-primary" type="submit" name="submit" value="submit">Random!</button>
       </form>
       <div class="embed-responsive embed-responsive-16by9">
         <iframe id="show-preview" name="iframe_a" srcdoc="" class="embed-responsive-item" allowfullscreen></iframe>

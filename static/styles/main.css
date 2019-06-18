@@ -18,7 +18,6 @@ body {
 input {
   margin-top: 5px;
   margin-bottom: 5px;
-  margin-left: 5px;
   padding: 5px;
   border-radius: 10px;
   font-family: var(--main-font);
@@ -30,13 +29,18 @@ input:focus {
   background-color: #FBFFF1
 }
 
+#inputList>li{
+	display: flex;
+	align-items: center;
+}
+
 select {
-  padding: 3px 0px 3px 18px;
-  background-color: rgb(24, 28, 36);
+  padding: 1px !important;
   color: white;
-  font-size: 15px;
+  font-size: 0.8em !important;
   font-family: var(--main-font);
   text-align: center;
+  width: 35% !important;
 }
 
 select:focus {
@@ -45,9 +49,15 @@ select:focus {
 }
 
 iframe {
-  height: 500px;
-  width: 300px;
+  height: 80%;
+  width: 80%;
   background-color: #C9EF83;
+}
+
+.buttons {
+	padding: 0em 0em 1em;
+	margin: 1em 1em 2em;
+	border-bottom: 1px solid darkblue;
 }
 
 .navbar {
@@ -131,6 +141,9 @@ iframe {
 	}
 	.main {
 		padding-top: 6rem;
+	}
+	.navbar {
+		background: rgb(29, 16, 102);
 	}
 }
 
